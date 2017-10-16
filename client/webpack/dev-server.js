@@ -6,21 +6,12 @@ const devServer = {
   historyApiFallback: true,
   port: 3000,
   compress: IS_PRODUCTION,
-
   proxy: {
     '/api': {
-      target: 'http://127.0.0.1:19001',
-      secure: false
-    },
-    // '/api/**': 'http://127.0.0.1:19001',
-    // '/api/': 'http://127.0.0.1:19001',
-    // '/imagesapi/': 'http://127.0.0.1:19001'
-    // '/api/**': 'http://198.199.115.67:19001',
-    // '/api/': 'http://198.199.115.67:19001',
-    // '/imagesapi/': 'http://198.199.115.67:19001'
+      target: IS_PRODUCTION ? 'http://104.236.163.74' : 'http://127.0.0.1:19001',
+      secure: true
+    }
   },
-
-
   inline: !IS_PRODUCTION,
   hot: !IS_PRODUCTION,
   host: '0.0.0.0',

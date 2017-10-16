@@ -13,8 +13,8 @@ import 'isomorphic-fetch';
 
 // Load SCSS
 // import '../scss/app.scss';
-// import '../scss/devices.css';
-// import '../scss/main.css';
+import '../scss/devices.css';
+import '../scss/main.css';
 
 es6Promise.polyfill();
 

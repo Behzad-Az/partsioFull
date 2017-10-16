@@ -7,7 +7,7 @@ const express = require('express');
 const url = require('url');
 const app = express();
 const bodyParser = require('body-parser');
-const connection = require('./db/knexfile.js').development;
+const connection = require('./db/knexfile.js').production;
 const knex = require('knex')(connection);
 
 // ***************************************************
