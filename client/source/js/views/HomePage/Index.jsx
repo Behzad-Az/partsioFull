@@ -71,8 +71,8 @@ export default class HomePage extends Component {
               </h1>
               <h2 className='paragraph'>
                 PARTSio is a collaborative tool for industrial inventory management that helps its clients reduce lead times, liquidate excess inventory, and optimize stock levels.
-                <div>We believe our clients can benefit greatly by sharing just the right amount of information with their peers such as excess inventory levels and procurement needs.</div>
-                <div>Our app facilitates the resulting collaboration securely and confidentially, and connects demand and supply for industrial equipment amongst peer corporations.<br/></div>
+                <br />Our clients benefit greatly by sharing inventory information such as excess levels and procurement needs.
+                <br />Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
               </h2>
               <div className='ctas'>
                 <input
@@ -166,8 +166,10 @@ export default class HomePage extends Component {
         <div className='footer'>
           <div className='container-sml text-center'>
             <div className='col-12'>
+              <h5 className='subheading'>
+                Coming Soon!
+              </h5>
               <h5 className='heading'>
-                Coming Soon!<br/>
                 A Better-Together Approach to Inventory Management
               </h5>
               <div className='ctas'>
