@@ -108,19 +108,7 @@ export default class HomePage extends Component {
           <div className='container-lrg flex'>
             <div className='col-4'>
               <b className='emoji'>
-                ⚙️ 🚑 🛠️
-              </b>
-              <h3 className='subheading'>
-                Scenario: Emergency
-                <br/>Part Procurement
-              </h3>
-              <p className='paragraph'>
-                A control valve on a critical system at a pulp mill has failed. Ben, the maintenance engineer, is assigned to remedy the situation as quickly as possible to prevent a costly unplanned shutdown. Ben knows he can expect four months lead time for a replacement in kind, and other solutions require extensive and expensive engineering modifications. He searches PARTSio and finds that one of their reputable peers in a neighboring state carries an excess brand new control valve fit for his application. He connects with the neighboring plant through PARTSio and verifies the technical information. PARTSio then enables the transaction. The new control valve is delivered to Ben within two days and installed flawlessly right away.
-              </p>
-            </div>
-            <div className='col-4'>
-              <b className='emoji'>
-                ⚙️ 🚛 🛠️
+                💻️ 🚛 💵
               </b>
               <h3 className='subheading'>
                 Scenario: Excess
@@ -128,6 +116,18 @@ export default class HomePage extends Component {
               </h3>
               <p className='paragraph'>
                 An oil extraction company was moving forward with a major expansion project when the commodity prices deflated. Despite already having procured over $220M worth of parts, management deemed the project no longer viable and canceled the project. Jessica, the lead project engineer, is tasked with liquidating the assets. She contacts PARTSio and our team of computer wizards export the inventory data from her company's database and make it easily searchable on our platform. Within days, Jessica begins receiving bids from all around the world on her excess inventory. She manages to liquidate $220M worth of parts in less than six months. All she had to do was contact PARTSio and respond to the bids that flooded her inbox.
+              </p>
+            </div>
+            <div className='col-4'>
+              <b className='emoji'>
+                💻️ 🚑 🛠️
+              </b>
+              <h3 className='subheading'>
+                Scenario: Emergency
+                <br/>Part Procurement
+              </h3>
+              <p className='paragraph'>
+                A control valve on a critical system at a pulp mill has failed. Ben, the maintenance engineer, is assigned to remedy the situation as quickly as possible to prevent a costly unplanned shutdown. Ben knows he can expect four months lead time for a replacement in kind, and other solutions require extensive and expensive engineering modifications. He searches PARTSio and finds that one of their reputable peers in a neighboring state carries an excess brand new control valve fit for his application. He connects with the neighboring plant through PARTSio and verifies the technical information. PARTSio then enables the transaction. The new control valve is delivered to Ben within two days and installed flawlessly right away.
               </p>
             </div>
             <div className='col-4'>
