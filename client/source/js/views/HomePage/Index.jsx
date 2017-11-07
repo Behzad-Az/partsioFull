@@ -55,12 +55,7 @@ export default class HomePage extends Component {
                 </a>
               </div>
               <div>
-                <a className='nav-link' href='#'>
-                  Twitter
-                </a>
-                <a className='nav-link' href='#'>
-                  Facebook
-                </a>
+
               </div>
             </div>
           </div>
@@ -154,11 +149,11 @@ export default class HomePage extends Component {
           </div>
           <div className='container-lrg'>
             <div className='logos flex'>
-              <img className='col-4' src='assets/img/Suncor.svg' />
+
               <img className='col-4' src='assets/img/Eldorado.svg' />
-              <img className='col-4' src='assets/img/ARCResources.svg' />
+
               <img className='col-4' src='assets/img/NewGold.svg' />
-              <img className='col-4' src='assets/img/Pengrowth.svg' />
+
               <img className='col-4' src='assets/img/Kinross.svg' />
             </div>
           </div>
@@ -190,15 +185,7 @@ export default class HomePage extends Component {
           <div className='container-sml footer-nav'>
             <div className='col-12 text-center'>
               <div>
-                <a className='nav-link'>
-                  Twitter
-                </a>
-                <a className='nav-link'>
-                  Facebook
-                </a>
-                <a className='nav-link'>
-                  Contact
-                </a>
+
               </div>
               <br />
               <div>
