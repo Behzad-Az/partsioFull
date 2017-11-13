@@ -9,6 +9,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const connection = require('./db/knexfile.js').production;
 const knex = require('knex')(connection);
+const elasticsearch = require('elasticsearch');
+const esClient = new elasticsearch.Client({
+  host: '127.0.0.1:9200',
+  log: 'error'
+});
 
 // ***************************************************
 // MIDDLEWARE
@@ -25,7 +30,16 @@ const server = app.listen(PORT, '127.0.0.1', 'localhost', () => console.log(`Lis
 // ***************************************************
 // HELPERS
 // ***************************************************
-const postNewEmailEntry = require('./helpers/POST_Routes/postNewEmailEntry.js');
+const getInstrumentSearchResults = require('./helpers/GET_Routes/getInstrumentSearchResults');
+const postNewEmailEntry = require('./helpers/POST_Routes/postNewEmailEntry');
+
+
+// ***************************************************
+// ROUTES - GET
+// ***************************************************
+app.get('/api/search_results', (req, res) => {
+  getInstrumentSearchResults(req, res, esClient);
+});
 
 // ***************************************************
 // ROUTES - POST

@@ -19,6 +19,7 @@ export default class HomePage extends Component {
     super();
     this._handleChange = this._handleChange.bind(this);
     this._submitEmail = this._submitEmail.bind(this);
+    this._getSearchResults = this._getSearchResults.bind(this);
   }
 
   _handleChange(event) {
@@ -38,6 +39,16 @@ export default class HomePage extends Component {
     })
     .then(response => response.json())
     .then(resJSON => dispatch(setEmailStatus(resJSON.emailStatus)))
+    .catch(console.error);
+  }
+
+  _getSearchResults() {
+    fetch('/api/search_results?text=hello&resultsOffset=0', {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(console.log)
     .catch(console.error);
   }
 
@@ -79,6 +90,9 @@ export default class HomePage extends Component {
                   onChange={this._handleChange} />
                 <button className='ctas-button' onClick={this._submitEmail}>
                   Sign Up
+                </button>
+                <button className='ctas-button' onClick={this._getSearchResults}>
+                  Search
                 </button>
               </div>
               <h4 className='paragraph'>{emailStatus}</h4>
