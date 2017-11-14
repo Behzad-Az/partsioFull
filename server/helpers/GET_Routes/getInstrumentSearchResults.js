@@ -8,23 +8,19 @@ const getInstrumentSearchResults = (req, res, esClient) => {
         includes: ['title', 'kind', 'id', 'search_text'],
         // "excludes": [ "*.description" ]
       },
-      // sort: [
-      //   {
-      //     _id: { order: "desc" }
-      //   }
-      // ],
+      sort: [
+        { created_at: { order : 'asc' } },
+        { title: 'desc' },
+        '_score'
+      ],
       query: {
-        // constant_score: {
-          // filter: {
-            bool: {
-              must: [
-                { term: { company_id: 'comp1' } },
-                { term: { expired: false } },
-                { type: { value : 'instrument' } }
-              ]
-            }
-          // }
-        // }
+        bool: {
+          must: [
+            { term: { company_id: 'comp1' } },
+            { term: { expired: false } },
+            { type: { value : 'instrument' } }
+          ]
+        }
       }
     };
     return esClient.search({ index: 'partsio_catalogue', body });

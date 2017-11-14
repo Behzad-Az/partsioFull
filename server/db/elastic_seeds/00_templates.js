@@ -15,15 +15,15 @@ const newIndex = {
       instrument: {
         properties: {
           id: { type: 'string' },
-          created_at: { type: 'date', format: 'yyyy-mm-dd' },
+          created_at: { type: 'date', format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ" },
           // location: { type: 'geo_point' },
-          title: { type: 'string' },
+          title: { type: 'text', fielddata: true },
           kind: { type: 'string' },
           photo_links: { type: 'string' },
           // photo_name: { type: 'string' },
           company_name: { type: 'string' },
           company_id: { type: 'string' },
-          search_text: { type: 'string' },
+          search_text: { type: 'text' },
           expired: { type: 'boolean' }
         }
       },
