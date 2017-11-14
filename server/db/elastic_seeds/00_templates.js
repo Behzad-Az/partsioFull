@@ -63,43 +63,6 @@ const newIndex = {
   }
 };
 
-// const bulkIndex = function bulkIndex(index, type, data) {
-//   let body = [];
-
-//   data.forEach(item => {
-//     const today = new Date();
-//     item.created_at = today.toISOString().slice(0, 10);
-//     body.push({
-//       index: {
-//         _id: item.id,
-//         _index: index,
-//         _type: type
-//       }
-//     });
-//     body.push(item);
-//   });
-
-//   esClient.bulk({ body })
-//   .then(response => {
-//     let errorCount = 0;
-//     response.items.forEach(item => {
-//       if (item.index && item.index.error) {
-//         console.log(++errorCount, item.index.error);
-//       }
-//     });
-//     console.log(`Successfully indexed ${data.length - errorCount} out of ${data.length} items`);
-//   })
-//   .catch(console.err);
-// };
-
-// const populateElasticData = () => {
-//   const jobsRaw = fs.readFileSync('jobs.json');
-//   const jobs = JSON.parse(jobsRaw);
-//   console.log(`${jobs.length} items parsed from data file`);
-//   bulkIndex('goalhwy_es_db', 'job', jobs);
-// };
-
 esClient.indices.delete({ index })
 .then(() => esClient.indices.create(newIndex))
-// .then(() => populateElasticData())
 .catch(err => console.error('Error inside elastic seed 00_templates.js: ', err));

@@ -1,0 +1,5 @@
+.search-page {
+  .main-container {
+    padding: $top_margin $default_margin $default_margin $sidebar_width_left + $default_margin; width: $main_container_width; min-width: $default_min_container_width; display: inline-block;
+  }
+}
