@@ -40,9 +40,6 @@ const getInstrumentSearchResults = (req, res, esClient) => {
           ]
         }
       }
-
-
-
     };
     return esClient.search({ index: 'partsio_catalogue', body });
   };

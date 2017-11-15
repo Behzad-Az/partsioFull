@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { spOpenGallery, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
+// import { css, StyleSheet } from 'aphrodite/no-important';
+import Lightbox from 'react-images';
+
+@connect(state => ({
+  gallerySettings: state.searchPage.get('gallerySettings'),
+}))
 
 export default class ResultRow extends Component {
   static propTypes = {
-    item: PropTypes.object
+    gallerySettings: PropTypes.object,
+    item: PropTypes.object,
+    dispatch: PropTypes.func
   }
 
   constructor() {
@@ -24,13 +34,15 @@ export default class ResultRow extends Component {
   }
 
   render() {
-    const { title, search_text } = this.props.item._source;
+    const { dispatch } = this.props;
+    const { isOpen, currentImage, images } = this.props.gallerySettings;
+    const { title, search_text, photo_links } = this.props.item._source;
     return (
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
-            <figure className='image is-64x64'>
-              <img src='https://bulma.io/images/placeholders/128x128.png' alt='Image' />
+            <figure className='image is-128x128' onClick={() => dispatch(spOpenGallery(photo_links))}>
+              <img src={photo_links[0]} alt='Image' />
             </figure>
           </div>
           <div className='media-content'>
@@ -57,6 +69,18 @@ export default class ResultRow extends Component {
               </div>
             </nav>
           </div>
+          <Lightbox
+            currentImage={currentImage}
+            images={images}
+            isOpen={isOpen}
+            onClickImage={null}
+            onClickNext={() => dispatch(spChngGalleryImg('next'))}
+            onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
+            onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
+            onClose={() => dispatch(spCloseGallery())}
+            showThumbnails={true}
+            theme={undefined}
+          />
         </article>
       </div>
     );
