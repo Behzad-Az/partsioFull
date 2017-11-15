@@ -37,7 +37,7 @@ export default class ResultsContainer extends Component {
   }
 
   _renderResults() {
-    return this.props.searchResults.map(result => <ResultRow key={result._id} result={result} /> );
+    return this.props.searchResults.map(result => <ResultRow key={result._id} item={result} /> );
   }
 
   _renderFooter() {

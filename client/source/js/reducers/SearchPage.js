@@ -21,8 +21,10 @@ const actionsMap = {
   },
   [SP_CONCAT_RESULTS]: (state, action) => {
     let { newResults, freshReload } = action.resJSON;
-    const prevIds = state.get('searchResults').map(result => result._id);
-    newResults = newResults.filter(result => !prevIds.includes(result._id));
+    if (!freshReload) {
+      const prevIds = state.get('searchResults').map(result => result._id);
+      newResults = newResults.filter(result => !prevIds.includes(result._id));
+    }
     return state.merge(Map({
       searchResults: freshReload ? newResults : state.get('searchResults').concat(newResults),
       prevSearchText: state.get('searchText'),

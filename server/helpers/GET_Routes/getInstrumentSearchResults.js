@@ -7,7 +7,7 @@ const getInstrumentSearchResults = (req, res, esClient) => {
       size: 2,
       from: parseInt(resultsOffset),
       _source: {
-        includes: ['title', 'kind', 'id', 'search_text', 'company_id', 'photo_links'],
+        includes: ['title', 'kind', 'id', 'search_text', 'photo_links', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text'],
         // "excludes": [ "*.description" ]
       },
       sort: [
