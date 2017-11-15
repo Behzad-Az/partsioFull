@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { handleChange, setEmailStatus } from 'actions/HomePage';
+import { hpHandleChange, hpSetEmailStatus } from 'actions/HomePage';
 
 @connect(state => ({
   email: state.homePage.get('email'),
@@ -23,7 +23,7 @@ export default class HomePage extends Component {
   }
 
   _handleChange(event) {
-    this.props.dispatch(handleChange(event));
+    this.props.dispatch(hpHandleChange(event));
   }
 
   _submitEmail() {
@@ -38,7 +38,7 @@ export default class HomePage extends Component {
       body: JSON.stringify({ email })
     })
     .then(response => response.json())
-    .then(resJSON => dispatch(setEmailStatus(resJSON.emailStatus)))
+    .then(resJSON => dispatch(hpSetEmailStatus(resJSON.emailStatus)))
     .catch(console.error);
   }
 

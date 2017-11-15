@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { spHandleChange, spConcatResults } from 'actions/SearchPage';
+import ResultsContainer from 'components/SearchPage/ResultsContainer.jsx';
 
 @connect(state => ({
-  email: state.homePage.get('email'),
-  emailStatus: state.homePage.get('emailStatus')
+  searchText: state.searchPage.get('searchText')
 }))
 
-export default class HomePage extends Component {
+export default class SearchPage extends Component {
   static propTypes = {
-    email: PropTypes.string,
-    emailStatus: PropTypes.string,
+    searchText: PropTypes.string,
     dispatch: PropTypes.func
   }
 
   constructor() {
     super();
     this._handleChange = this._handleChange.bind(this);
-    // this._submitEmail = this._submitEmail.bind(this);
     this._getSearchResults = this._getSearchResults.bind(this);
   }
 
   _handleChange(event) {
-    this.props.dispatch(handleChange(event));
+    this.props.dispatch(spHandleChange(event));
   }
 
   _getSearchResults() {
-    // const searchText = 'hello how';
-    // fetch(`/api/search_results?text=hello&resultsOffset=0&searchText=${searchText}`, {
-    //   method: 'GET',
-    //   credentials: 'same-origin'
-    // })
-    // .then(response => response.json())
-    // .then(console.log)
-    // .catch(console.error);
+    const { searchText, dispatch } = this.props;
+    fetch(`/api/search_results?text=hello&resultsOffset=0&searchText=${searchText}&freshReload=true`, {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(response => response.json())
+    .then(resJSON => dispatch(spConcatResults(resJSON)))
+    .catch(console.error);
   }
 
   render() {
@@ -48,19 +47,61 @@ export default class HomePage extends Component {
           </p>
           <div className='field has-addons'>
             <div className='control is-expanded has-icons-left'>
-              <input className='input' type='text' placeholder='Find a repository' />
+              <input
+                className='input'
+                type='text'
+                name='searchText'
+                placeholder='e.g. butterfly valve 150# 24in'
+                onChange={this._handleChange}
+              />
               <span className='icon is-small is-left'>
                 <i className='fa fa-search' />
               </span>
             </div>
             <div className='control'>
-              <a className='button is-info'>
+              <button className='button is-info' onClick={this._getSearchResults}>
                 Search
-              </a>
+              </button>
             </div>
           </div>
+          <ResultsContainer />
         </div>
       </div>
     );
   }
 }
+
+// <div className='field is-grouped is-grouped-centered'>
+//   <p className='control'>
+//     <a className='button is-outlined'>
+//       <label className='checkbox'>
+//         <input type='checkbox' />
+//         Static Equip
+//       </label>
+//     </a>
+//   </p>
+//   <p className='control'>
+//     <a className='button is-outlined'>
+//       <label className='checkbox'>
+//         <input type='checkbox' />
+//         Rotating Equip
+//       </label>
+//     </a>
+//   </p>
+//   <p className='control'>
+//     <a className='button is-outlined'>
+//       <label className='checkbox'>
+//         <input type='checkbox' />
+//         Electrical
+//       </label>
+//     </a>
+//   </p>
+//   <p className='control'>
+//     <a className='button is-outlined'>
+//       <label className='checkbox'>
+//         <input type='checkbox' />
+//         Instrumentation
+//       </label>
+//     </a>
+//   </p>
+// </div>

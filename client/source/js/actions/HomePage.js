@@ -1,16 +1,16 @@
-export const HANDLE_CHANGE = 'HANDLE_CHANGE';
-export const SET_EMAIL_STATUS = 'SET_EMAIL_STATUS';
+export const HP_HANDLE_CHANGE = 'HP_HANDLE_CHANGE';
+export const HP_SET_EMAIL_STATUS = 'HP_SET_EMAIL_STATUS';
 
-export function handleChange(event) {
+export function hpHandleChange(event) {
   return {
-    type: HANDLE_CHANGE,
+    type: HP_HANDLE_CHANGE,
     event
   };
 }
 
-export function setEmailStatus(emailStatus) {
+export function hpSetEmailStatus(emailStatus) {
   return {
-    type: SET_EMAIL_STATUS,
+    type: HP_SET_EMAIL_STATUS,
     emailStatus
   }
 }

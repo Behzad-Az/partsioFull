@@ -1,12 +1,10 @@
 const getInstrumentSearchResults = (req, res, esClient) => {
 
-  const { searchText, resultsOffset } = req.query;
-
-  console.log("i'm here 0: ", {searchText});
+  const { searchText, resultsOffset, freshReload } = req.query;
 
   const getInstruments = () => {
     const body = {
-      size: 10,
+      size: 2,
       from: parseInt(resultsOffset),
       _source: {
         includes: ['title', 'kind', 'id', 'search_text', 'company_id', 'photo_links'],
@@ -51,8 +49,10 @@ const getInstrumentSearchResults = (req, res, esClient) => {
 
   getInstruments()
   .then(results => {
-    console.log("i'm here search results: ", results.hits.hits);
-    res.send({ results: results.hits.hits });
+    res.send({
+      newResults: results.hits.hits,
+      freshReload: freshReload === 'true'
+    });
   })
   .catch(err => {
     console.error('Error inside getInstrumentSearchResults.js: ', err);

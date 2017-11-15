@@ -1,8 +1,8 @@
 import { Map } from 'immutable';
 
 import {
-  HANDLE_CHANGE,
-  SET_EMAIL_STATUS
+  HP_HANDLE_CHANGE,
+  HP_SET_EMAIL_STATUS
 } from 'actions/HomePage';
 
 const initialState = Map({
@@ -11,14 +11,14 @@ const initialState = Map({
 });
 
 const actionsMap = {
-  [HANDLE_CHANGE]: (state, action) => {
+  [HP_HANDLE_CHANGE]: (state, action) => {
     const { name, value } = action.event.target;
     let stateObj = {};
     stateObj[name] = value;
     return state.merge(Map(stateObj));
   },
 
-  [SET_EMAIL_STATUS]: (state, action) => {
+  [HP_SET_EMAIL_STATUS]: (state, action) => {
     return state.merge(Map({ emailStatus: action.emailStatus }));
   }
 };
