@@ -35,7 +35,7 @@ export default class ResultRow extends Component {
           <div className='media-left'>
 
             <p className='control'>
-              <button className='button is-fullwidth' disabled>
+              <button className='button is-fullwidth' title='See Documents' disabled>
                 <span className='icon is-small'>
                   <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
                 </span>
@@ -43,7 +43,7 @@ export default class ResultRow extends Component {
               </button>
             </p>
 
-            <button className='image is-128x128 button is-outlined' onClick={() => dispatch(spOpenGallery(photo_links))}>
+            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => dispatch(spOpenGallery(photo_links))}>
               <img src={photo_links[0]} alt='Images' />
               <p className='has-text-centered is-size-7 has-text-grey'>Images</p>
             </button>
@@ -61,13 +61,13 @@ export default class ResultRow extends Component {
             </div>
             <nav className='level is-mobile'>
               <div className='level-left'>
-                <a className='level-item'>
+                <a className='level-item' title='Contact Seller'>
                   <span className='icon is-small'><i className='fa fa-reply' /></span>
                 </a>
                 <a className='level-item'>
                   <span className='icon is-small'><i className='fa fa-retweet' /></span>
                 </a>
-                <a className='level-item'>
+                <a className='level-item' title='Add to Wishlist'>
                   <span className='icon is-small'><i className='fa fa-heart' /></span>
                 </a>
               </div>
