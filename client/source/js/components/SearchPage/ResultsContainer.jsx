@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { spConcatResults } from 'actions/SearchPage';
+import Lightbox from 'react-images';
+import { spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 import ResultRow from './ResultRow.jsx';
 
 @connect(state => ({
   searchResults: state.searchPage.get('searchResults'),
   prevSearchText: state.searchPage.get('prevSearchText'),
-  noMoreResult: state.searchPage.get('noMoreResult')
+  noMoreResult: state.searchPage.get('noMoreResult'),
+  gallerySettings: state.searchPage.get('gallerySettings')
 }))
 
 export default class ResultsContainer extends Component {
@@ -15,13 +17,13 @@ export default class ResultsContainer extends Component {
     searchResults: PropTypes.array,
     prevSearchText: PropTypes.string,
     noMoreResult: PropTypes.bool,
+    gallerySettings: PropTypes.object,
     dispatch: PropTypes.func
   }
 
   constructor() {
     super();
     this._loadMoreResults = this._loadMoreResults.bind(this);
-    this._renderResults = this._renderResults.bind(this);
     this._renderFooter = this._renderFooter.bind(this);
   }
 
@@ -34,10 +36,6 @@ export default class ResultsContainer extends Component {
     .then(response => response.json())
     .then(resJSON => dispatch(spConcatResults(resJSON)))
     .catch(console.error);
-  }
-
-  _renderResults() {
-    return this.props.searchResults.map(result => <ResultRow key={result._id} item={result} /> );
   }
 
   _renderFooter() {
@@ -64,9 +62,23 @@ export default class ResultsContainer extends Component {
   }
 
   render() {
+    const { searchResults, dispatch } = this.props;
+    const { isOpen, currentImage, images } = this.props.gallerySettings;
     return (
       <div className='results-container'>
-        { this._renderResults() }
+        { searchResults.map(result => <ResultRow key={result._id} item={result} /> ) }
+        <Lightbox
+          currentImage={currentImage}
+          images={images}
+          isOpen={isOpen}
+          onClickImage={null}
+          onClickNext={() => dispatch(spChngGalleryImg('next'))}
+          onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
+          onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
+          onClose={() => dispatch(spCloseGallery())}
+          showThumbnails={true}
+          theme={undefined}
+        />
         { this._renderFooter() }
       </div>
     );

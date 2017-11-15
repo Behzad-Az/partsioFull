@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { spOpenGallery, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
-// import { css, StyleSheet } from 'aphrodite/no-important';
-import Lightbox from 'react-images';
+import { spOpenGallery } from 'actions/SearchPage';
 
-@connect(state => ({
-  gallerySettings: state.searchPage.get('gallerySettings'),
-}))
+@connect()
 
 export default class ResultRow extends Component {
   static propTypes = {
-    gallerySettings: PropTypes.object,
     item: PropTypes.object,
     dispatch: PropTypes.func
   }
@@ -23,7 +18,6 @@ export default class ResultRow extends Component {
 
   _decodeCompanyRating() {
     const { company_rating, company_name } = this.props.item._source;
-
     switch (this.props.item._source.company_rating) {
       case 'A':
         return <small><i className='fa fa-industry' /> A+ Reseller <i className='fa fa-check-circle' /></small>
@@ -34,7 +28,6 @@ export default class ResultRow extends Component {
 
   render() {
     const { dispatch } = this.props;
-    const { isOpen, currentImage, images } = this.props.gallerySettings;
     const { title, search_text, photo_links } = this.props.item._source;
     return (
       <div className='box'>
@@ -80,18 +73,7 @@ export default class ResultRow extends Component {
               </div>
             </nav>
           </div>
-          <Lightbox
-            currentImage={currentImage}
-            images={images}
-            isOpen={isOpen}
-            onClickImage={null}
-            onClickNext={() => dispatch(spChngGalleryImg('next'))}
-            onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
-            onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
-            onClose={() => dispatch(spCloseGallery())}
-            showThumbnails={true}
-            theme={undefined}
-          />
+
         </article>
       </div>
     );
