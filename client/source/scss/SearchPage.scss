@@ -1,5 +1,15 @@
 .search-page {
   .main-container {
     padding: $top_margin $default_margin $default_margin $sidebar_width_left + $default_margin; width: $main_container_width; min-width: $default_min_container_width; display: inline-block;
+    .results-container {
+      .box .media {
+        .media-left {
+          .image {
+            height: 100%; margin-top: $default_margin/2;
+            img { border: 1px solid #ccc; border-radius: 5%; overflow: hidden; }
+          }
+        }
+      }
+    }
   }
 }

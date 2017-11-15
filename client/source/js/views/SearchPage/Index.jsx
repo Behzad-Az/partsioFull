@@ -52,6 +52,7 @@ export default class SearchPage extends Component {
                 type='text'
                 name='searchText'
                 placeholder='e.g. butterfly valve 150# 24in'
+                onKeyPress={e => e.charCode === 13 ? this._getSearchResults() : null}
                 onChange={this._handleChange}
               />
               <span className='icon is-small is-left'>
@@ -70,38 +71,3 @@ export default class SearchPage extends Component {
     );
   }
 }
-
-// <div className='field is-grouped is-grouped-centered'>
-//   <p className='control'>
-//     <a className='button is-outlined'>
-//       <label className='checkbox'>
-//         <input type='checkbox' />
-//         Static Equip
-//       </label>
-//     </a>
-//   </p>
-//   <p className='control'>
-//     <a className='button is-outlined'>
-//       <label className='checkbox'>
-//         <input type='checkbox' />
-//         Rotating Equip
-//       </label>
-//     </a>
-//   </p>
-//   <p className='control'>
-//     <a className='button is-outlined'>
-//       <label className='checkbox'>
-//         <input type='checkbox' />
-//         Electrical
-//       </label>
-//     </a>
-//   </p>
-//   <p className='control'>
-//     <a className='button is-outlined'>
-//       <label className='checkbox'>
-//         <input type='checkbox' />
-//         Instrumentation
-//       </label>
-//     </a>
-//   </p>
-// </div>

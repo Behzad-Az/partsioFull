@@ -30,7 +30,6 @@ export default class ResultRow extends Component {
       default:
         return <small><i className='fa fa-industry' /> {company_name}</small>
     }
-
   }
 
   render() {
@@ -41,9 +40,21 @@ export default class ResultRow extends Component {
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
-            <figure className='image is-128x128' onClick={() => dispatch(spOpenGallery(photo_links))}>
-              <img src={photo_links[0]} alt='Image' />
-            </figure>
+
+            <p className='control'>
+              <button className='button is-fullwidth' disabled>
+                <span className='icon is-small'>
+                  <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
+                </span>
+                <span>Docs</span>
+              </button>
+            </p>
+
+            <button className='image is-128x128 button is-outlined' onClick={() => dispatch(spOpenGallery(photo_links))}>
+              <img src={photo_links[0]} alt='Images' />
+              <p className='has-text-centered is-size-7 has-text-grey'>Images</p>
+            </button>
+
           </div>
           <div className='media-content'>
             <div className='content'>
