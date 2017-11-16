@@ -24,7 +24,8 @@ const newIndex = {
           company_name: { type: 'string' },
           company_id: { type: 'string' },
           search_text: { type: 'text' },
-          expired: { type: 'boolean' }
+          expired: { type: 'boolean' },
+          removed: { type: 'boolean' }
         }
       },
       // course: {

@@ -71,6 +71,7 @@
     "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.5.10",
+    "query-string": "^5.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-images": "^0.5.11",

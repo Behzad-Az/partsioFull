@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { spSetAsyncFlag, spHandleChange, spConcatResults } from 'actions/SearchPage';
+import { spSetAsyncLoading, spHandleChange, spConcatResults } from 'actions/SearchPage';
 import ResultsContainer from 'components/SearchPage/ResultsContainer.jsx';
 
 @connect(state => ({
-  asyncFlag: state.searchPage.get('asyncFlag'),
+  asyncLoading: state.searchPage.get('asyncLoading'),
   searchText: state.searchPage.get('searchText')
 }))
 
 export default class SearchPage extends Component {
   static propTypes = {
-    asyncFlag: PropTypes.bool,
+    asyncLoading: PropTypes.bool,
     searchText: PropTypes.string,
     dispatch: PropTypes.func
   }
@@ -23,25 +23,25 @@ export default class SearchPage extends Component {
   }
 
   _handleEnterKey(event) {
-    if (event.keyCode === 13 && !this.props.asyncFlag) {
+    if (event.keyCode === 13 && !this.props.asyncLoading) {
       this._getSearchResults();
     }
   }
 
   _getSearchResults() {
     const { searchText, dispatch } = this.props;
-    dispatch(spSetAsyncFlag(true));
+    dispatch(spSetAsyncLoading(true));
     fetch(`/api/search_results?text=hello&resultsOffset=0&searchText=${searchText}&freshReload=true`, {
       method: 'GET',
       credentials: 'same-origin'
     })
     .then(response => response.json())
     .then(resJSON => dispatch(spConcatResults(resJSON)))
-    .catch(() => dispatch(spSetAsyncFlag(false)));
+    .catch(() => dispatch(spSetAsyncLoading(false)));
   }
 
   render() {
-    const { asyncFlag, dispatch } = this.props;
+    const { asyncLoading, dispatch } = this.props;
     return (
       <div className='search-page'>
         <div className='main-container'>
@@ -64,9 +64,9 @@ export default class SearchPage extends Component {
             </div>
             <div className='control'>
               <button
-                className={`button is-info ${asyncFlag ? 'is-loading' : ''}`}
+                className={`button is-info ${asyncLoading ? 'is-loading' : ''}`}
                 onClick={this._getSearchResults}
-                disabled={asyncFlag}
+                disabled={asyncLoading}
               >
                 Search
               </button>

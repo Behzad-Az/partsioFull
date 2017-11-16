@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { spOpenGallery, spToggleModal } from 'actions/SearchPage';
 
@@ -18,7 +19,7 @@ export default class ResultRow extends Component {
 
   _decodeCompanyRating() {
     const { company_rating, company_name } = this.props.item._source;
-    switch (this.props.item._source.company_rating) {
+    switch (company_rating) {
       case 'A':
         return <small><i className='fa fa-industry' /> A+ Reseller <i className='fa fa-check-circle' /></small>
       default:
@@ -28,14 +29,13 @@ export default class ResultRow extends Component {
 
   render() {
     const { dispatch, item } = this.props;
-    const { title, search_text, photos, docs } = item._source;
+    const { title, search_text, photos, docs, id } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
     return (
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
-
             <p className='control'>
               <button
                 className='button is-fullwidth'
@@ -49,22 +49,20 @@ export default class ResultRow extends Component {
                 <span>Docs</span>
               </button>
             </p>
-
             <button
               className='image is-128x128 button is-outlined'
               title={numPhotos ? 'See Images' : 'No photo available'}
               disabled={!numPhotos}
-              onClick={() => this.props.dispatch(spOpenGallery(photos))}
+              onClick={() => dispatch(spOpenGallery(photos))}
             >
               <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
               { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
             </button>
-
           </div>
           <div className='media-content'>
             <div className='content'>
               <p>
-                <strong>{title}</strong>
+                <Link to={`/item?id=${id}`}><strong>{title}</strong></Link>
                 <br />
                 { this._decodeCompanyRating() }
                 <br />
@@ -89,7 +87,6 @@ export default class ResultRow extends Component {
               </div>
             </nav>
           </div>
-
         </article>
       </div>
     );

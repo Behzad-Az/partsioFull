@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Lightbox from 'react-images';
-import { spSetAsyncFlag, spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
+import { spSetAsyncLoading, spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 import ResultRow from './ResultRow.jsx';
 import DocsModal from './DocsModal.jsx';
 import ContactModal from './ContactModal.jsx';
 
 @connect(state => ({
-  asyncFlag: state.searchPage.get('asyncFlag'),
+  asyncLoading: state.searchPage.get('asyncLoading'),
   searchResults: state.searchPage.get('searchResults'),
   prevSearchText: state.searchPage.get('prevSearchText'),
   noMoreResult: state.searchPage.get('noMoreResult'),
@@ -17,7 +17,7 @@ import ContactModal from './ContactModal.jsx';
 
 export default class ResultsContainer extends Component {
   static propTypes = {
-    asyncFlag: PropTypes.bool,
+    asyncLoading: PropTypes.bool,
     searchResults: PropTypes.array,
     prevSearchText: PropTypes.string,
     noMoreResult: PropTypes.bool,
@@ -34,14 +34,14 @@ export default class ResultsContainer extends Component {
 
   _getMoreResults() {
     const { prevSearchText, searchResults, dispatch } = this.props;
-    dispatch(spSetAsyncFlag(true));
+    dispatch(spSetAsyncLoading(true));
     fetch(`/api/search_results?text=hello&resultsOffset=${searchResults.length}&searchText=${prevSearchText}&freshReload=false`, {
       method: 'GET',
       credentials: 'same-origin'
     })
     .then(response => response.json())
     .then(resJSON => dispatch(spConcatResults(resJSON)))
-    .catch(() => dispatch(spSetAsyncFlag(false)));
+    .catch(() => dispatch(spSetAsyncLoading(false)));
   }
 
   _renderModals() {
@@ -70,13 +70,13 @@ export default class ResultsContainer extends Component {
   }
 
   _renderFooter() {
-    const { noMoreResult, searchResults, asyncFlag } = this.props;
+    const { noMoreResult, searchResults, asyncLoading } = this.props;
     if (searchResults.length) {
       return (
         <p className='has-text-centered'>
           <button
-            className={`button is-info ${asyncFlag ? 'is-loading' : ''}`}
-            disabled={noMoreResult || asyncFlag}
+            className={`button is-info ${asyncLoading ? 'is-loading' : ''}`}
+            disabled={noMoreResult || asyncLoading}
             onClick={this._getMoreResults}
           >
             { noMoreResult ? 'No more matching result' : 'Load More' }

@@ -11,7 +11,7 @@ import {
 } from 'actions/SearchPage';
 
 const initialState = Map({
-  asyncFlag: false,
+  asyncLoading: false,
   searchText: '',
   prevSearchText: '',
   searchResults: [],
@@ -28,7 +28,7 @@ const initialState = Map({
 
 const actionsMap = {
   [SP_SET_ASYNC_FLAG]: (state, action) => {
-    return state.merge((Map({ asyncFlag: action.onOrOff })));
+    return state.merge((Map({ asyncLoading: action.onOrOff })));
   },
 
   [SP_HANDLE_CHANGE]: (state, action) => {
@@ -46,7 +46,7 @@ const actionsMap = {
       newResults = newResults.filter(result => !prevIds.includes(result._id));
     }
     return state.merge(Map({
-      asyncFlag: false,
+      asyncLoading: false,
       searchResults: freshReload ? newResults : prevResults.concat(newResults),
       prevSearchText: state.get('searchText'),
       noMoreResult: !newResults.length

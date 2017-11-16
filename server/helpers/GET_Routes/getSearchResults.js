@@ -1,8 +1,8 @@
-const getInstrumentSearchResults = (req, res, esClient) => {
+const getSearchResults = (req, res, esClient) => {
 
   const { searchText, resultsOffset, freshReload } = req.query;
 
-  const getInstruments = () => {
+  const getResults = () => {
     const body = {
       size: 2,
       from: parseInt(resultsOffset),
@@ -36,6 +36,7 @@ const getInstrumentSearchResults = (req, res, esClient) => {
           filter: [
             { term: { company_id: 'comp1' } },
             { term: { expired: false } },
+            { term: { removed: false } },
             { type: { value : 'instrument' } }
           ]
         }
@@ -44,7 +45,7 @@ const getInstrumentSearchResults = (req, res, esClient) => {
     return esClient.search({ index: 'partsio_catalogue', body });
   };
 
-  getInstruments()
+  getResults()
   .then(results => {
     res.send({
       newResults: results.hits.hits,
@@ -52,10 +53,10 @@ const getInstrumentSearchResults = (req, res, esClient) => {
     });
   })
   .catch(err => {
-    console.error('Error inside getInstrumentSearchResults.js: ', err);
+    console.error('Error inside getSearchResults.js: ', err);
     res.status(400).end();
   });
 
 };
 
-module.exports = getInstrumentSearchResults;
+module.exports = getSearchResults;
