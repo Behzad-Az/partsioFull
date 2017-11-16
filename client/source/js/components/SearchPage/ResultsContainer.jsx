@@ -5,6 +5,7 @@ import Lightbox from 'react-images';
 import { spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 import ResultRow from './ResultRow.jsx';
 import DocsModal from './DocsModal.jsx';
+import ContactModal from './ContactModal.jsx';
 
 @connect(state => ({
   searchResults: state.searchPage.get('searchResults'),
@@ -25,6 +26,7 @@ export default class ResultsContainer extends Component {
   constructor() {
     super();
     this._loadMoreResults = this._loadMoreResults.bind(this);
+    this._renderModals = this._renderModals.bind(this);
     this._renderFooter = this._renderFooter.bind(this);
   }
 
@@ -39,6 +41,31 @@ export default class ResultsContainer extends Component {
     .catch(console.error);
   }
 
+  _renderModals() {
+    const { searchResults, dispatch } = this.props;
+    if (searchResults.length) {
+      const { isOpen, currentImage, images } = this.props.galleryParams;
+      return (
+        <div className='modals'>
+          <Lightbox
+            currentImage={currentImage}
+            images={images}
+            isOpen={isOpen}
+            onClickImage={null}
+            onClickNext={() => dispatch(spChngGalleryImg('next'))}
+            onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
+            onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
+            onClose={() => dispatch(spCloseGallery())}
+            showThumbnails={true}
+            theme={undefined}
+          />
+          <DocsModal />
+          <ContactModal />
+        </div>
+      );
+    }
+  }
+
   _renderFooter() {
     const { noMoreResult, searchResults } = this.props;
     if (searchResults.length) {
@@ -49,7 +76,7 @@ export default class ResultsContainer extends Component {
             disabled={noMoreResult}
             onClick={this._loadMoreResults}
           >
-            {noMoreResult ? 'No more matching result' : 'Load More'}
+            { noMoreResult ? 'No more matching result' : 'Load More' }
           </button>
         </p>
       );
@@ -63,24 +90,10 @@ export default class ResultsContainer extends Component {
   }
 
   render() {
-    const { searchResults, dispatch } = this.props;
-    const { isOpen, currentImage, images } = this.props.galleryParams;
     return (
       <div className='results-container'>
-        { searchResults.map(result => <ResultRow key={result._id} item={result} /> ) }
-        <Lightbox
-          currentImage={currentImage}
-          images={images}
-          isOpen={isOpen}
-          onClickImage={null}
-          onClickNext={() => dispatch(spChngGalleryImg('next'))}
-          onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
-          onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
-          onClose={() => dispatch(spCloseGallery())}
-          showThumbnails={true}
-          theme={undefined}
-        />
-        <DocsModal />
+        { this.props.searchResults.map(result => <ResultRow key={result._id} item={result} /> ) }
+        { this._renderModals() }
         { this._renderFooter() }
       </div>
     );

@@ -50,7 +50,7 @@ export default class docsModal extends Component {
   render() {
     const { id, docs } = this.props.modalParams;
     return (
-      <div className={id === 'docsModal' ? 'modal documents is-active' : 'modal documents'}>
+      <div className={id === 'docsModal' ? 'modal is-active' : 'modal'}>
         <div className='modal-background' onClick={this._closeModal}></div>
         <div className='modal-card'>
           <header className='modal-card-head'>

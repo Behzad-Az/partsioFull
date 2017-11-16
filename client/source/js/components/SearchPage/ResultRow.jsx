@@ -13,7 +13,6 @@ export default class ResultRow extends Component {
 
   constructor() {
     super();
-    this._openDocsModal = this._openDocsModal.bind(this);
     this._decodeCompanyRating = this._decodeCompanyRating.bind(this);
   }
 
@@ -27,18 +26,9 @@ export default class ResultRow extends Component {
     }
   }
 
-  _openDocsModal() {
-    const { docs } = this.props.item._source;
-    if (docs.length) {
-      this.props.dispatch(spToggleModal({
-        id: 'docsModal',
-        docs
-      }));
-    }
-  }
-
   render() {
-    const { title, search_text, photos, docs } = this.props.item._source;
+    const { dispatch, item } = this.props;
+    const { title, search_text, photos, docs } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
     return (
@@ -51,7 +41,7 @@ export default class ResultRow extends Component {
                 className='button is-fullwidth'
                 title={numDocs ? 'See Attachments' : 'No attachment available'}
                 disabled={!numDocs}
-                onClick={this._openDocsModal}
+                onClick={() => dispatch(spToggleModal({ id: 'docsModal', docs }))}
               >
                 <span className='icon is-small'>
                   <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
@@ -83,7 +73,11 @@ export default class ResultRow extends Component {
             </div>
             <nav className='level is-mobile'>
               <div className='level-left'>
-                <a className='level-item' title='Contact Seller'>
+                <a
+                  className='level-item'
+                  title='Contact Seller'
+                  onClick={() => dispatch(spToggleModal({ id: 'contactModal', item }))}
+                >
                   <span className='icon is-small'><i className='fa fa-reply' /></span>
                 </a>
                 <a className='level-item'>
