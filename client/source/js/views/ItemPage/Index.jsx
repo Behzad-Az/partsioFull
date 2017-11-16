@@ -189,7 +189,6 @@ export default class ItemPage extends Component {
                 <p className='title'>
                   <i className='fa fa-comment-o' /> Comments
                 </p>
-                <p className='subtitle'>Aligned with the right tile</p>
                 <div className='content'>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
                 </div>
@@ -202,9 +201,74 @@ export default class ItemPage extends Component {
                 <p className='title'>
                   <i className='fa fa-reply' /> Contact
                 </p>
-                <p className='subtitle'>With even more content</p>
-                <div className='content'>
-                  Content -->
+
+                <div className='content form'>
+
+                  <div className='field'>
+                    <label className='label'>From</label>
+                    <div className='control has-icons-left'>
+                      <input className='input' type='text' placeholder='Name' />
+                      <span className='icon is-small is-left'>
+                        <i className='fa fa-user' />
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className='field'>
+                    <div className='control has-icons-left has-icons-right'>
+                      <input className='input' type='email' placeholder='Email' />
+                      <span className='icon is-small is-left'>
+                        <i className='fa fa-envelope' />
+                      </span>
+                      <span className='icon is-small is-right'>
+                        <i className='fa fa-check' />
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className='field has-addons'>
+                    <div className='control'>
+                      <a className='button is-static'>
+                        +1
+                      </a>
+                    </div>
+                    <div className='control is-expanded'>
+                      <input className='input' type='tel' placeholder='Phone number (optional)' />
+                    </div>
+                  </div>
+
+
+                  <div className='field'>
+                    <label className='label'>Subject</label>
+                    <div className='control'>
+                      <input className='input' type='text' placeholder='e.g. Bidding on your item for sale' />
+                    </div>
+                  </div>
+
+
+                  <div className='field'>
+                    <label className='label'>Message</label>
+                    <div className='control'>
+                      <textarea className='textarea' placeholder='Textarea' />
+                    </div>
+                  </div>
+
+
+
+                  <div className='field is-grouped'>
+                    <div className='control'>
+                      <button className='button is-link'>Submit</button>
+                    </div>
+                    <div className='control'>
+                      <button className='button is-text'>Cancel</button>
+                    </div>
+                  </div>
+
+
+
+
+
+
                 </div>
               </div>
             </article>
