@@ -31,7 +31,7 @@ export default class ResultRow extends Component {
     const { docs } = this.props.item._source;
     if (docs.length) {
       this.props.dispatch(spToggleModal({
-        id: 'documentsModal',
+        id: 'docsModal',
         docs
       }));
     }
@@ -39,13 +39,20 @@ export default class ResultRow extends Component {
 
   render() {
     const { title, search_text, photos, docs } = this.props.item._source;
+    const numPhotos = photos.length;
+    const numDocs = docs.length;
     return (
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
 
             <p className='control'>
-              <button className='button is-fullwidth' title='See Documents' disabled={!docs.length} onClick={this._openDocsModal}>
+              <button
+                className='button is-fullwidth'
+                title={numDocs ? 'See Attachments' : 'No attachment available'}
+                disabled={!numDocs}
+                onClick={this._openDocsModal}
+              >
                 <span className='icon is-small'>
                   <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
                 </span>
@@ -53,9 +60,14 @@ export default class ResultRow extends Component {
               </button>
             </p>
 
-            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => this.props.dispatch(spOpenGallery(photos))}>
-              <img src={photos[0].link} alt='Images' />
-              <p className='has-text-centered is-size-7 has-text-grey'>Images</p>
+            <button
+              className='image is-128x128 button is-outlined'
+              title={numPhotos ? 'See Images' : 'No photo available'}
+              disabled={!numPhotos}
+              onClick={() => this.props.dispatch(spOpenGallery(photos))}
+            >
+              <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
+              { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
             </button>
 
           </div>

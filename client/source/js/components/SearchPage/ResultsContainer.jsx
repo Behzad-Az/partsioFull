@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-images';
 import { spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 import ResultRow from './ResultRow.jsx';
-import DocumentsModal from './DocumentsModal.jsx';
+import DocsModal from './DocsModal.jsx';
 
 @connect(state => ({
   searchResults: state.searchPage.get('searchResults'),
@@ -80,7 +80,7 @@ export default class ResultsContainer extends Component {
           showThumbnails={true}
           theme={undefined}
         />
-        <DocumentsModal />
+        <DocsModal />
         { this._renderFooter() }
       </div>
     );

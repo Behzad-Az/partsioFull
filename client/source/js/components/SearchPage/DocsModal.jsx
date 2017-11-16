@@ -7,7 +7,7 @@ import { spToggleModal } from 'actions/SearchPage';
   modalParams: state.searchPage.get('modalParams'),
 }))
 
-export default class OfficeModal extends Component {
+export default class docsModal extends Component {
   static propTypes = {
     modalParams: PropTypes.object,
     dispatch: PropTypes.func
@@ -35,8 +35,8 @@ export default class OfficeModal extends Component {
             </tr>
           </thead>
           <tbody>
-            { docs.map(doc =>
-              <tr style={{ cursor: 'pointer' }}>
+            { docs.map((doc, index) =>
+              <tr key={index} style={{ cursor: 'pointer' }}>
                 <td style={{ width: '70%' }}>{doc.title}</td>
                 <td style={{ width: '30%' }} className='has-text-centered'><i className='fa fa-file-text-o' /></td>
               </tr>
@@ -50,7 +50,7 @@ export default class OfficeModal extends Component {
   render() {
     const { id, docs } = this.props.modalParams;
     return (
-      <div className={id === 'documentsModal' ? 'modal documents is-active' : 'modal documents'}>
+      <div className={id === 'docsModal' ? 'modal documents is-active' : 'modal documents'}>
         <div className='modal-background' onClick={this._closeModal}></div>
         <div className='modal-card'>
           <header className='modal-card-head'>
