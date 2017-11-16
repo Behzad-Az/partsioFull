@@ -30,15 +30,15 @@ export default class docsModal extends Component {
         <table className='table is-fullwidth is-hoverable'>
           <thead>
             <tr>
-              <th>Title</th>
-              <th className='has-text-centered'><i className='fa fa-cloud-download' /></th>
+              <th style={{ width: '70%' }}>Title</th>
+              <th style={{ width: '30%' }} className='has-text-centered'><i className='fa fa-cloud-download' /></th>
             </tr>
           </thead>
           <tbody>
             { docs.map((doc, index) =>
               <tr key={index} style={{ cursor: 'pointer' }}>
-                <td style={{ width: '70%' }}>{doc.title}</td>
-                <td style={{ width: '30%' }} className='has-text-centered'><i className='fa fa-file-text-o' /></td>
+                <td>{doc.title}</td>
+                <td className='has-text-centered'><i className='fa fa-file-text-o' /></td>
               </tr>
             )}
           </tbody>
