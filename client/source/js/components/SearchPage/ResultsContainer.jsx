@@ -27,12 +27,12 @@ export default class ResultsContainer extends Component {
 
   constructor() {
     super();
-    this._loadMoreResults = this._loadMoreResults.bind(this);
+    this._getMoreResults = this._getMoreResults.bind(this);
     this._renderModals = this._renderModals.bind(this);
     this._renderFooter = this._renderFooter.bind(this);
   }
 
-  _loadMoreResults() {
+  _getMoreResults() {
     const { prevSearchText, searchResults, dispatch } = this.props;
     dispatch(spSetAsyncFlag(true));
     fetch(`/api/search_results?text=hello&resultsOffset=${searchResults.length}&searchText=${prevSearchText}&freshReload=false`, {
@@ -77,7 +77,7 @@ export default class ResultsContainer extends Component {
           <button
             className={`button is-info ${asyncFlag ? 'is-loading' : ''}`}
             disabled={noMoreResult || asyncFlag}
-            onClick={this._loadMoreResults}
+            onClick={this._getMoreResults}
           >
             { noMoreResult ? 'No more matching result' : 'Load More' }
           </button>
