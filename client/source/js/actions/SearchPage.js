@@ -18,10 +18,10 @@ export function spConcatResults(args) {
   };
 }
 
-export function spOpenGallery(photoLinks) {
+export function spOpenGallery(photos) {
   return {
     type: SP_OPEN_GALLERY,
-    photoLinks
+    photos
   };
 }
 

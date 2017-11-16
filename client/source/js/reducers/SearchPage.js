@@ -43,10 +43,11 @@ const actionsMap = {
   },
 
   [SP_OPEN_GALLERY]: (state, action) => {
-    const images = action.photoLinks.map(src => {
+    const images = action.photos.map(photo => {
       return {
-        src,
-        thumbnail: src,
+        src: photo.link,
+        thumbnail: photo.link,
+        caption: photo.caption,
         orientation: 'landscape'
       };
     });

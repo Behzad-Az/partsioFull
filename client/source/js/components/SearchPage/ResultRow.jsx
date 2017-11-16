@@ -28,7 +28,7 @@ export default class ResultRow extends Component {
 
   render() {
     const { dispatch } = this.props;
-    const { title, search_text, photo_links } = this.props.item._source;
+    const { title, search_text, photos } = this.props.item._source;
     return (
       <div className='box'>
         <article className='media'>
@@ -43,8 +43,8 @@ export default class ResultRow extends Component {
               </button>
             </p>
 
-            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => dispatch(spOpenGallery(photo_links))}>
-              <img src={photo_links[0]} alt='Images' />
+            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => dispatch(spOpenGallery(photos))}>
+              <img src={photos[0].link} alt='Images' />
               <p className='has-text-centered is-size-7 has-text-grey'>Images</p>
             </button>
 
