@@ -39,11 +39,8 @@ export default class SearchPage extends Component {
     return (
       <div className='search-page'>
         <div className='main-container'>
-          <h1 className='title is-2 has-text-centered'>
-            part·si·o
-          </h1>
-          <p className='has-text-centered'>
-            A Better-Together Approach to Inventory Management
+          <p className='title is-2 has-text-centered'>
+            <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
           </p>
           <div className='field has-addons'>
             <div className='control is-expanded has-icons-left'>

@@ -1,6 +1,7 @@
 .search-page {
+  background-color: $default_bg_color; min-height: 100vh; padding: 0 $default_margin/2;
   .main-container {
-    padding: $top_margin $default_margin $default_margin $sidebar_width_left + $default_margin; width: $main_container_width; min-width: $default_min_container_width; display: inline-block;
+    padding: $default_margin; width: $main_container_width; min-width: $default_min_container_width; max-width: $default_max_container_width; display: block; margin: auto;
     .results-container {
       .box .media {
         .media-left {

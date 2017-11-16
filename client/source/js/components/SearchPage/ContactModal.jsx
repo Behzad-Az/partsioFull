@@ -56,7 +56,7 @@ export default class ContactModal extends Component {
             </div>
           </div>
           <div className='field is-horizontal'>
-            <div className='field-label'></div>
+            <div className='field-label' />
             <div className='field-body'>
               <div className='field is-expanded'>
                 <div className='field has-addons'>

@@ -10,8 +10,9 @@ $default_margin: 20px;
 $sidebar_width_right: 270px;
 $sidebar_width_left: 180px;
 $top_margin: 60px;
-$main_container_width: calc(100% - 270px);
+$main_container_width: 80%;
 $default_min_container_width: 280px;
+$default_max_container_width: 800px;
 
 // body,html {
 //   // margin:0;
