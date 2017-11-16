@@ -5,7 +5,8 @@ import {
   SP_CONCAT_RESULTS,
   SP_OPEN_GALLERY,
   SP_CLOSE_GALLERY,
-  SP_CHNG_GALLERY_IMG
+  SP_CHNG_GALLERY_IMG,
+  SP_TOGGLE_MODAL
 } from 'actions/SearchPage';
 
 const initialState = Map({
@@ -13,10 +14,13 @@ const initialState = Map({
   prevSearchText: '',
   searchResults: [],
   noMoreResult: false,
-  gallerySettings: {
+  galleryParams: {
     images: [],
     isOpen: false,
     currentImage: 0
+  },
+  modalParams: {
+    id: null
   }
 });
 
@@ -52,7 +56,7 @@ const actionsMap = {
       };
     });
     return state.merge(Map({
-      gallerySettings: {
+      galleryParams: {
         images,
         currentImage: 0,
         isOpen: true
@@ -61,17 +65,17 @@ const actionsMap = {
   },
 
   [SP_CLOSE_GALLERY]: (state, action) => {
-    const gallerySettings = {
+    const galleryParams = {
       images: [],
       isOpen: false,
       currentImage: 0
     };
-    return state.merge(Map({ gallerySettings }));
+    return state.merge(Map({ galleryParams }));
   },
 
   [SP_CHNG_GALLERY_IMG]: (state, action) => {
     const { imgIndex } = action;
-    let currentImage = state.get('gallerySettings').currentImage;
+    let currentImage = state.get('galleryParams').currentImage;
     if (imgIndex === 'next') {
       currentImage += 1;
     } else if (imgIndex === 'prev') {
@@ -79,12 +83,16 @@ const actionsMap = {
     } else {
       currentImage = imgIndex;
     }
-    const gallerySettings = {
-      images: [ ...state.get('gallerySettings').images ],
-      isOpen: state.get('gallerySettings').isOpen,
+    const galleryParams = {
+      images: [ ...state.get('galleryParams').images ],
+      isOpen: state.get('galleryParams').isOpen,
       currentImage
     };
-    return state.merge(Map({ gallerySettings }));
+    return state.merge(Map({ galleryParams }));
+  },
+
+  [SP_TOGGLE_MODAL]: (state, action) => {
+    return state.merge(Map({ modalParams: action.modalParams }));
   }
 
 };

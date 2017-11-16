@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import Lightbox from 'react-images';
 import { spConcatResults, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 import ResultRow from './ResultRow.jsx';
+import DocumentsModal from './DocumentsModal.jsx';
 
 @connect(state => ({
   searchResults: state.searchPage.get('searchResults'),
   prevSearchText: state.searchPage.get('prevSearchText'),
   noMoreResult: state.searchPage.get('noMoreResult'),
-  gallerySettings: state.searchPage.get('gallerySettings')
+  galleryParams: state.searchPage.get('galleryParams')
 }))
 
 export default class ResultsContainer extends Component {
@@ -17,7 +18,7 @@ export default class ResultsContainer extends Component {
     searchResults: PropTypes.array,
     prevSearchText: PropTypes.string,
     noMoreResult: PropTypes.bool,
-    gallerySettings: PropTypes.object,
+    galleryParams: PropTypes.object,
     dispatch: PropTypes.func
   }
 
@@ -63,7 +64,7 @@ export default class ResultsContainer extends Component {
 
   render() {
     const { searchResults, dispatch } = this.props;
-    const { isOpen, currentImage, images } = this.props.gallerySettings;
+    const { isOpen, currentImage, images } = this.props.galleryParams;
     return (
       <div className='results-container'>
         { searchResults.map(result => <ResultRow key={result._id} item={result} /> ) }
@@ -79,6 +80,7 @@ export default class ResultsContainer extends Component {
           showThumbnails={true}
           theme={undefined}
         />
+        <DocumentsModal />
         { this._renderFooter() }
       </div>
     );

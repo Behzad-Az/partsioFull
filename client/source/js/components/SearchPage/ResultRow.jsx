@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { spOpenGallery } from 'actions/SearchPage';
+import { spOpenGallery, spToggleModal } from 'actions/SearchPage';
 
 @connect()
 
@@ -13,6 +13,7 @@ export default class ResultRow extends Component {
 
   constructor() {
     super();
+    this._openDocsModal = this._openDocsModal.bind(this);
     this._decodeCompanyRating = this._decodeCompanyRating.bind(this);
   }
 
@@ -26,16 +27,25 @@ export default class ResultRow extends Component {
     }
   }
 
+  _openDocsModal() {
+    const { docs } = this.props.item._source;
+    if (docs.length) {
+      this.props.dispatch(spToggleModal({
+        id: 'documentsModal',
+        docs
+      }));
+    }
+  }
+
   render() {
-    const { dispatch } = this.props;
-    const { title, search_text, photos } = this.props.item._source;
+    const { title, search_text, photos, docs } = this.props.item._source;
     return (
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
 
             <p className='control'>
-              <button className='button is-fullwidth' title='See Documents' disabled>
+              <button className='button is-fullwidth' title='See Documents' disabled={!docs.length} onClick={this._openDocsModal}>
                 <span className='icon is-small'>
                   <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
                 </span>
@@ -43,7 +53,7 @@ export default class ResultRow extends Component {
               </button>
             </p>
 
-            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => dispatch(spOpenGallery(photos))}>
+            <button className='image is-128x128 button is-outlined' title='See Images' onClick={() => this.props.dispatch(spOpenGallery(photos))}>
               <img src={photos[0].link} alt='Images' />
               <p className='has-text-centered is-size-7 has-text-grey'>Images</p>
             </button>

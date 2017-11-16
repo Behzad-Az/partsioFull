@@ -20,7 +20,7 @@ const newIndex = {
           title: { type: 'text', fielddata: true },
           kind: { type: 'string' },
           photos: { type: 'nested' },
-          files: { type: 'nested' },
+          docs: { type: 'nested' },
           company_name: { type: 'string' },
           company_id: { type: 'string' },
           search_text: { type: 'text' },
