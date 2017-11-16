@@ -1,41 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { spHandleChange, spConcatResults } from 'actions/SearchPage';
+import { spSetAsyncFlag, spHandleChange, spConcatResults } from 'actions/SearchPage';
 import ResultsContainer from 'components/SearchPage/ResultsContainer.jsx';
 
 @connect(state => ({
+  asyncFlag: state.searchPage.get('asyncFlag'),
   searchText: state.searchPage.get('searchText')
 }))
 
 export default class SearchPage extends Component {
   static propTypes = {
+    asyncFlag: PropTypes.bool,
     searchText: PropTypes.string,
     dispatch: PropTypes.func
   }
 
   constructor() {
     super();
-    this._handleChange = this._handleChange.bind(this);
+    this._handleEnterKey = this._handleEnterKey.bind(this);
     this._getSearchResults = this._getSearchResults.bind(this);
   }
 
-  _handleChange(event) {
-    this.props.dispatch(spHandleChange(event));
+  _handleEnterKey(event) {
+    if (event.keyCode === 13 && !this.props.asyncFlag) {
+      this._getSearchResults();
+    }
   }
 
   _getSearchResults() {
     const { searchText, dispatch } = this.props;
+    dispatch(spSetAsyncFlag(true));
     fetch(`/api/search_results?text=hello&resultsOffset=0&searchText=${searchText}&freshReload=true`, {
       method: 'GET',
       credentials: 'same-origin'
     })
     .then(response => response.json())
     .then(resJSON => dispatch(spConcatResults(resJSON)))
-    .catch(console.error);
+    .catch(() => dispatch(spSetAsyncFlag(false)));
   }
 
   render() {
+    const { asyncFlag, dispatch } = this.props;
     return (
       <div className='search-page'>
         <div className='main-container'>
@@ -49,15 +55,19 @@ export default class SearchPage extends Component {
                 type='text'
                 name='searchText'
                 placeholder='e.g. butterfly valve 150# 24in'
-                onKeyPress={e => e.charCode === 13 ? this._getSearchResults() : null}
-                onChange={this._handleChange}
+                onKeyUp={this._handleEnterKey}
+                onChange={event => dispatch(spHandleChange(event))}
               />
               <span className='icon is-small is-left'>
                 <i className='fa fa-search' />
               </span>
             </div>
             <div className='control'>
-              <button className='button is-info' onClick={this._getSearchResults}>
+              <button
+                className={`button is-info ${asyncFlag ? 'is-loading' : ''}`}
+                onClick={this._getSearchResults}
+                disabled={asyncFlag}
+              >
                 Search
               </button>
             </div>

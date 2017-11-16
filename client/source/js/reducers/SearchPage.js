@@ -1,6 +1,7 @@
 import { Map } from 'immutable';
 
 import {
+  SP_SET_ASYNC_FLAG,
   SP_HANDLE_CHANGE,
   SP_CONCAT_RESULTS,
   SP_OPEN_GALLERY,
@@ -10,6 +11,7 @@ import {
 } from 'actions/SearchPage';
 
 const initialState = Map({
+  asyncFlag: false,
   searchText: '',
   prevSearchText: '',
   searchResults: [],
@@ -25,6 +27,10 @@ const initialState = Map({
 });
 
 const actionsMap = {
+  [SP_SET_ASYNC_FLAG]: (state, action) => {
+    return state.merge((Map({ asyncFlag: action.onOrOff })));
+  },
+
   [SP_HANDLE_CHANGE]: (state, action) => {
     const { name, value } = action.event.target;
     let stateObj = {};
@@ -40,6 +46,7 @@ const actionsMap = {
       newResults = newResults.filter(result => !prevIds.includes(result._id));
     }
     return state.merge(Map({
+      asyncFlag: false,
       searchResults: freshReload ? newResults : prevResults.concat(newResults),
       prevSearchText: state.get('searchText'),
       noMoreResult: !newResults.length
