@@ -19,6 +19,7 @@
   background-color: $default_bg_color; min-height: 100vh; padding: 0 $default_margin/2;
   .main-container {
     padding: $default_margin; width: 100%; min-width: $default_min_container_width; display: block; margin: auto;
+    .is-purple { background-color: lighten(#3d4773, 10%); }
   }
 }
 

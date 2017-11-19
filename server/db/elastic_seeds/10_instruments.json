@@ -27,14 +27,10 @@
     "title":"Item 2",
     "kind":"Temperature Transmitter",
     "photos":[
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg", "caption":"photo2.1"},
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image2.jpg", "caption":"photo2.2"},
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image3.jpg", "caption":"photo2.3"}
+
     ],
     "docs":[
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg", "title":"doc2.1"},
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image2.jpg", "title":"doc2.2"},
-      {"link":"http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image3.jpg", "title":"doc2.3"}
+
     ],
     "company_name":"Shell",
     "company_id":"comp1",

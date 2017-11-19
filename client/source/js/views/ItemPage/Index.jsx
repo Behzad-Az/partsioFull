@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
+import Lightbox from 'react-images';
 import { ipGetItemInfo } from 'actions/ItemPage';
+import { spOpenGallery, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
 
 @connect(state => ({
   asyncLoading: state.itemPage.get('asyncLoading'),
   asyncError: state.itemPage.get('asyncError'),
   dataLoaded: state.itemPage.get('dataLoaded'),
-  item: state.itemPage.get('item')
+  item: state.itemPage.get('item'),
+  galleryParams: state.searchPage.get('galleryParams')
 }))
 
 export default class ItemPage extends Component {
@@ -24,6 +27,7 @@ export default class ItemPage extends Component {
     super();
     this._decodeCompanyRating = this._decodeCompanyRating.bind(this);
     this._renderDocsTable = this._renderDocsTable.bind(this);
+    this._renderGallery = this._renderGallery.bind(this);
     this._renderCompAfterData = this._renderCompAfterData.bind(this);
   }
 
@@ -56,23 +60,41 @@ export default class ItemPage extends Component {
       return (
         <tr>
           <td>No attachment</td>
-          <td><i className='fa fa-frown-o' /></td>
+          <td className='has-text-centered'><i className='fa fa-frown-o' /></td>
         </tr>
       );
     }
+  }
 
-    // return (
-    //   <tbody>
-    //     { docs.map((doc, index) =>
-    //       <tr key={index} style={{ cursor: 'pointer' }}>
-    //         <td>{doc.title}</td>
-    //         <td className='has-text-centered'><i className='fa fa-file-text-o' /></td>
-    //       </tr>
-    //     )}
-    //     { !docs[0] && <tr><td>No attachment</td><td><i className='fa fa-frown-o' /></td></tr> }
-    //   </tbody>
-
-    // );
+  _renderGallery() {
+    const { item, dispatch, galleryParams } = this.props;
+    const { photos } = item._source;
+    if (photos.length) {
+      const { isOpen, currentImage, images } = galleryParams;
+      return (
+        <figure className='image is-square' style={{ cursor: 'pointer' }} onClick={() => dispatch(spOpenGallery(photos))}>
+          <Lightbox
+            currentImage={currentImage}
+            images={images}
+            isOpen={isOpen}
+            onClickImage={null}
+            onClickNext={() => dispatch(spChngGalleryImg('next'))}
+            onClickPrev={() => dispatch(spChngGalleryImg('prev'))}
+            onClickThumbnail={index => dispatch(spChngGalleryImg(index))}
+            onClose={() => dispatch(spCloseGallery())}
+            showThumbnails={true}
+            theme={undefined}
+          />
+          <img src={photos[0].link} />
+        </figure>
+      );
+    } else {
+      return (
+        <figure className='image is-square'>
+          <img src='http://www.royallepagesudbury.ca/images/no-image.png' />
+        </figure>
+      );
+    }
   }
 
   _renderCompAfterData() {
@@ -87,76 +109,23 @@ export default class ItemPage extends Component {
     } else if (dataLoaded && !asyncError) {
       const { title, search_text, photos, id } = item._source;
       const numPhotos = photos.length;
-      // const numDocs = docs.length;
-      // return (
-      //   <div className='box'>
-      //     <article className='media'>
-      //       <div className='media-left'>
-      //         <p className='control'>
-      //           <button
-      //             className='button is-fullwidth'
-      //             title={numDocs ? 'See Attachments' : 'No attachment available'}
-      //             disabled={!numDocs}
-      //             onClick={null}
-      //           >
-      //             <span className='icon is-small'>
-      //               <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
-      //             </span>
-      //             <span>Docs</span>
-      //           </button>
-      //         </p>
-      //         <button
-      //           className='image is-128x128 button is-outlined'
-      //           title={numPhotos ? 'See Images' : 'No photo available'}
-      //           disabled={!numPhotos}
-      //           onClick={null}
-      //         >
-      //           <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
-      //           { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
-      //         </button>
-      //       </div>
-      //       <div className='media-content'>
-      //         <div className='content'>
-      //           <p>
-      //             <strong>{title}</strong>
-      //             <br />
-      //             { this._decodeCompanyRating() }
-      //             <br />
-      //             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-      //           </p>
-      //         </div>
-      //         <nav className='level is-mobile'>
-      //           <div className='level-left'>
-      //             <a
-      //               className='level-item'
-      //               title='Contact Seller'
-      //               onClick={null}
-      //             >
-      //               <span className='icon is-small'><i className='fa fa-reply' /></span>
-      //             </a>
-      //             <a className='level-item'>
-      //               <span className='icon is-small'><i className='fa fa-retweet' /></span>
-      //             </a>
-      //             <a className='level-item' title='Add to Wishlist'>
-      //               <span className='icon is-small'><i className='fa fa-heart' /></span>
-      //             </a>
-      //           </div>
-      //         </nav>
-      //       </div>
-      //     </article>
-      //   </div>
-      // );
+      const subject = item ? `Re: ${item._source.title} for Sale` : 'Re: Item for Sale';
       return (
         <div className='tile is-ancestor'>
           <div className='tile is-vertical is-8'>
             <div className='tile'>
               <div className='tile is-parent is-vertical'>
-                <article className='tile is-child notification is-primary'>
-                  <p className='title'>{title}</p>
-                  <p className='subtitle'>{ this._decodeCompanyRating() }</p>
+                <article className='tile is-child notification is-purple'>
+                  <p className='title has-text-white'>{title}</p>
+                  <p className='subtitle has-text-white'>{ this._decodeCompanyRating() }</p>
+                  <div className='field'>
+                    <div className='control'>
+                      <button className='button is-fullwidth'>Buy Now!</button>
+                    </div>
+                  </div>
                 </article>
-                <article className='tile is-child notification is-warning'>
-                  <p className='title'>
+                <article className='tile is-child notification is-purple'>
+                  <p className='title has-text-white'>
                     <i className='fa fa-paperclip' /> Docs
                   </p>
                   <table className='table is-fullwidth is-hoverable'>
@@ -173,39 +142,36 @@ export default class ItemPage extends Component {
                 </article>
               </div>
               <div className='tile is-parent'>
-                <article className='tile is-child notification is-info'>
-                  <p className='title'>
+                <article className='tile is-child notification is-purple'>
+                  <p className='title has-text-white'>
                     <i className='fa fa-camera' /> Photos
                   </p>
-                  <p className='subtitle'>With an image</p>
-                  <figure className='image is-square'>
-                    <img src={photos[0].link} />
-                  </figure>
+                  <p className='subtitle has-text-white'>With an image</p>
+                  { this._renderGallery() }
+
                 </article>
               </div>
             </div>
             <div className='tile is-parent'>
-              <article className='tile is-child notification is-danger'>
-                <p className='title'>
+              <article className='tile is-child notification is-purple'>
+                <p className='title has-text-white'>
                   <i className='fa fa-comment-o' /> Comments
                 </p>
-                <div className='content'>
+                <p className='content has-text-white'>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
-                </div>
+                </p>
               </article>
             </div>
           </div>
           <div className='tile is-parent'>
-            <article className='tile is-child notification is-success'>
+            <article className='tile is-child notification is-purple'>
               <div className='content'>
-                <p className='title'>
-                  <i className='fa fa-reply' /> Contact
+                <p className='title has-text-white'>
+                  <i className='fa fa-reply' /> Contact / Buy
                 </p>
-
-                <div className='content form'>
-
+                <div className='content'>
                   <div className='field'>
-                    <label className='label'>From</label>
+                    <label className='label has-text-white'>From</label>
                     <div className='control has-icons-left'>
                       <input className='input' type='text' placeholder='Name' />
                       <span className='icon is-small is-left'>
@@ -213,7 +179,6 @@ export default class ItemPage extends Component {
                       </span>
                     </div>
                   </div>
-
                   <div className='field'>
                     <div className='control has-icons-left has-icons-right'>
                       <input className='input' type='email' placeholder='Email' />
@@ -225,7 +190,6 @@ export default class ItemPage extends Component {
                       </span>
                     </div>
                   </div>
-
                   <div className='field has-addons'>
                     <div className='control'>
                       <a className='button is-static'>
@@ -236,39 +200,37 @@ export default class ItemPage extends Component {
                       <input className='input' type='tel' placeholder='Phone number (optional)' />
                     </div>
                   </div>
-
-
                   <div className='field'>
-                    <label className='label'>Subject</label>
+                    <label className='label has-text-white'>Subject</label>
                     <div className='control'>
-                      <input className='input' type='text' placeholder='e.g. Bidding on your item for sale' />
+                      <input
+                        className='input'
+                        type='text'
+                        placeholder='e.g. Bidding on your item for sale'
+                        defaultValue={subject}
+                      />
                     </div>
                   </div>
-
-
                   <div className='field'>
-                    <label className='label'>Message</label>
+                    <label className='label has-text-white'>Message</label>
                     <div className='control'>
                       <textarea className='textarea' placeholder='Textarea' />
                     </div>
                   </div>
-
-
-
                   <div className='field is-grouped'>
                     <div className='control'>
-                      <button className='button is-link'>Submit</button>
+                      <button className='button'>Submit</button>
                     </div>
                     <div className='control'>
-                      <button className='button is-text'>Cancel</button>
+                      <button className='button is-text has-text-white'>Cancel</button>
                     </div>
                   </div>
-
-
-
-
-
-
+                  <hr />
+                  <div className='field'>
+                    <div className='control'>
+                      <button className='button is-fullwidth'>Buy Now!</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </article>
@@ -283,19 +245,6 @@ export default class ItemPage extends Component {
       );
     }
   }
-
-  // render() {
-  //   return (
-  //     <div className='item-page'>
-  //       <div className='main-container'>
-  //         <p className='title is-2 has-text-centered'>
-  //           <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
-  //         </p>
-  //         { this._renderCompAfterData() }
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   render() {
     return (

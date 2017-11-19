@@ -45,9 +45,9 @@ export default class ResultsContainer extends Component {
   }
 
   _renderModals() {
-    const { searchResults, dispatch } = this.props;
+    const { searchResults, galleryParams, dispatch } = this.props;
     if (searchResults.length) {
-      const { isOpen, currentImage, images } = this.props.galleryParams;
+      const { isOpen, currentImage, images } = galleryParams;
       return (
         <div className='modals'>
           <Lightbox
