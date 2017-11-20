@@ -29,11 +29,11 @@ export default class SearchPage extends Component {
     const event = {
       target: {
         name: 'searchText',
-        value: query
+        value: query.replace(/-/g,' ')
       }
     };
     dispatch(spHandleChng(event));
-    this._getSearchResults(query);
+    this._getSearchResults(query.replace(/-/g,' '));
   }
 
   _handleEnterKey(event) {

@@ -127,7 +127,7 @@ export default class ItemPage extends Component {
         <hr />
         <div className='field'>
           <div className='control'>
-            <button className='button is-fullwidth'>Buy Now!</button>
+            <button className='button is-fullwidth' disabled title='Disabled for demo purposes'>Buy Now!</button>
           </div>
         </div>
       </article>
@@ -137,7 +137,6 @@ export default class ItemPage extends Component {
   _renderDocsTile() {
     const { docs } = this.props.item._source;
     let header;
-    console.log("i'm here 2: ", docs.length);
     switch (docs.length) {
       case 0:
         header = 'No Attachment';
@@ -213,8 +212,8 @@ export default class ItemPage extends Component {
   }
 
   _renderContactTile() {
-    const { item } = this.props;
-    const subject = item ? `Re: ${item._source.title} for Sale` : 'Re: Item for Sale';
+    const { title } = this.props.item._source;
+    const subject = title ? `Re: ${title}` : 'Re: Item for Sale';
     return (
       <article className='tile is-child notification is-purple'>
         <div className='content'>
@@ -232,13 +231,10 @@ export default class ItemPage extends Component {
               </div>
             </div>
             <div className='field'>
-              <div className='control has-icons-left has-icons-right'>
+              <div className='control has-icons-left'>
                 <input className='input' type='email' placeholder='Email' />
                 <span className='icon is-small is-left'>
                   <i className='fa fa-envelope' />
-                </span>
-                <span className='icon is-small is-right'>
-                  <i className='fa fa-check' />
                 </span>
               </div>
             </div>
@@ -271,10 +267,16 @@ export default class ItemPage extends Component {
             </div>
             <div className='field is-grouped'>
               <div className='control'>
-                <button className='button'>Submit</button>
+                <button
+                  className='button'
+                  title='Disabled for demo purposes'
+                  disabled
+                >
+                  Submit
+                </button>
               </div>
               <div className='control'>
-                <button className='button is-text has-text-white'>Cancel</button>
+                <button className='button is-text has-text-white'>Clear</button>
               </div>
             </div>
           </div>

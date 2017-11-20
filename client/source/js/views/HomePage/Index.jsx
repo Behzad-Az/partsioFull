@@ -19,14 +19,14 @@ export default class HomePage extends Component {
   constructor() {
     super();
     this._handleChange = this._handleChange.bind(this);
-    this._submitEmail = this._submitEmail.bind(this);
+    this._postEmailAddress = this._postEmailAddress.bind(this);
   }
 
   _handleChange(event) {
     this.props.dispatch(hpHandleChange(event));
   }
 
-  _submitEmail() {
+  _postEmailAddress() {
     const { dispatch, email } = this.props;
     fetch('/api/email_entries', {
       method: 'POST',
@@ -71,8 +71,13 @@ export default class HomePage extends Component {
                 <br />Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
               </h2>
               <div className='lchco-ctas'>
-                <Link className='lchco-ctas-button' to='/search?query=36in 150lb butterfly valve'>
-                  Try our search engine - new!
+                <Link className='lchco-ctas-button' to='/search?query=36in-150lb-butterfly-valve'>
+                  <i className='fa fa-search' /> try our search engine
+                </Link>
+              </div>
+              <div className='lchco-ctas'>
+                <Link className='lchco-ctas-button' to='item?id=lqNk4vEXeJM'>
+                  <i className='fa fa-file-text-o' /> sample equipment page
                 </Link>
               </div>
               <div className='lchco-ctas'>
@@ -83,7 +88,7 @@ export default class HomePage extends Component {
                   name='email'
                   value={email}
                   onChange={this._handleChange} />
-                <button className='lchco-ctas-button' onClick={this._submitEmail}>
+                <button className='lchco-ctas-button' onClick={this._postEmailAddress}>
                   Sign Up
                 </button>
               </div>
@@ -186,7 +191,7 @@ export default class HomePage extends Component {
                   name='email'
                   value={email}
                   onChange={this._handleChange} />
-                <button className='lchco-ctas-button' onClick={this._submitEmail}>
+                <button className='lchco-ctas-button' onClick={this._postEmailAddress}>
                   Sign Up
                 </button>
               </div>

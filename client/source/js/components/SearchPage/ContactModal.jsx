@@ -61,9 +61,9 @@ export default class ContactModal extends Component {
   _renderPostStatus() {
     const { postStatus } = this.props.modalParams;
     if (postStatus === 'ok') {
-      return <p className='help is-success'>Successfully sent!</p>
+      return <p className='help has-text-success'>Successfully sent!</p>
     } else if (postStatus === 'fail') {
-      return <p className='help is-danger'>Unable to send.</p>
+      return <p className='help has-text-danger'>Unable to send.</p>
     }
   }
 
@@ -101,7 +101,7 @@ export default class ContactModal extends Component {
                   </p>
                 </div>
                 <div className='field'>
-                  <p className='control is-expanded has-icons-left has-icons-right'>
+                  <p className='control is-expanded has-icons-left'>
                     <input
                       className='input'
                       type='email'
@@ -111,9 +111,6 @@ export default class ContactModal extends Component {
                     />
                     <span className='icon is-small is-left'>
                       <i className='fa fa-envelope' />
-                    </span>
-                    <span className='icon is-small is-right'>
-                      <i className='fa fa-check' />
                     </span>
                   </p>
                 </div>
@@ -139,7 +136,6 @@ export default class ContactModal extends Component {
                       />
                     </p>
                   </div>
-                  <p className='help'>Include area code</p>
                 </div>
               </div>
             </div>
@@ -159,9 +155,6 @@ export default class ContactModal extends Component {
                       onChange={event => dispatch(spHandleModalChng(event))}
                     />
                   </div>
-                  <p className='help is-danger'>
-                    This field is required
-                  </p>
                 </div>
               </div>
             </div>
@@ -185,8 +178,9 @@ export default class ContactModal extends Component {
           </section>
           <footer className='modal-card-foot'>
             <button
+              title='Disabled for demo purposes'
+              disabled
               className={asyncLoading ? 'button is-success is-loading' : 'button is-success'}
-              disabled={asyncLoading}
               onClick={this._postMsg}
             >
               Send
