@@ -66,7 +66,7 @@ export default class ItemPage extends Component {
     if (photos.length) {
       const { isOpen, currentImage, images } = galleryParams;
       return (
-        <figure className='image is-square' style={{ cursor: 'pointer' }} onClick={() => dispatch(spOpenGallery(photos))}>
+        <figure className='image'>
           <Lightbox
             currentImage={currentImage}
             images={images}
@@ -85,7 +85,7 @@ export default class ItemPage extends Component {
     } else {
       return (
         <figure className='image is-square'>
-          <img src='http://www.royallepagesudbury.ca/images/no-image.png' />
+          <img src='http://www.entechdesigns.com/new_site/wp-content/themes/en-tech/images/not_available_icon.jpg' />
         </figure>
       );
     }
@@ -95,22 +95,35 @@ export default class ItemPage extends Component {
     const { title, price } = this.props.item._source;
     return (
       <article className='intro tile is-child notification is-purple'>
-        <p className='title has-text-white'>{title}</p>
-        <p className='meta has-text-white'>
-          <i className='fa fa-check-circle' /> A+ Reseller
+        <p className='title has-text-white'>
+          {title}
         </p>
-        <p className='meta has-text-white'>
-          <i className='fa fa-map' /> Canada
-        </p>
-        <p className='meta has-text-white'>
-          <i className='fa fa-clock-o' /> Brad New
-        </p>
-        <p className='meta has-text-white'>
-          <i className='fa fa-truck' /> Avail. Now
-        </p>
-        <p className='meta has-text-white'>
-          <i className='fa fa-dollar' /> {price}
-        </p>
+        <div className='metas'>
+          <p className='meta has-text-white'>
+            <i className='fa fa-check-circle' /> A+ Reseller
+          </p>
+          <p className='meta has-text-white'>
+            <i className='fa fa-map' /> Canada
+          </p>
+          <p className='meta has-text-white'>
+            <i className='fa fa-clock-o' /> Brad New
+          </p>
+          <p className='meta has-text-white'>
+            <i className='fa fa-truck' /> Avail. Now
+          </p>
+          <p className='meta has-text-white'>
+            <i className='fa fa-dollar' /> {price}
+          </p>
+        </div>
+        <hr />
+        <div className='actions'>
+          <p className='has-text-centered has-text-white is-inline-block' style={{ width: '50%', cursor: 'pointer' }}>
+            <i className='fa fa-heart' title='Save to Favorites' />
+          </p>
+          <p className='has-text-centered has-text-white is-inline-block' style={{ width: '50%', cursor: 'pointer'  }}>
+            <i className='fa fa-flag' title='Report' />
+          </p>
+        </div>
         <hr />
         <div className='field'>
           <div className='control'>
@@ -123,7 +136,19 @@ export default class ItemPage extends Component {
 
   _renderDocsTile() {
     const { docs } = this.props.item._source;
-    const header = docs.length ? `${docs.length} Docs` : 'Docs';
+    let header;
+    console.log("i'm here 2: ", docs.length);
+    switch (docs.length) {
+      case 0:
+        header = 'No Attachment';
+        break;
+      case 1:
+        header = '1 Doc';
+        break;
+      default:
+        header = `${docs.length} Docs`;
+        break;
+    }
     return (
       <article className='tile is-child notification is-purple'>
         <p className='title has-text-white'>
@@ -145,10 +170,26 @@ export default class ItemPage extends Component {
   }
 
   _renderPhotosTile() {
-    const { photos } = this.props.item._source;
-    const header = photos.length ? `${photos.length} Photos` : 'Photos';
+    const { item, dispatch } = this.props;
+    const { photos } = item._source;
+    let header;
+    switch (photos.length) {
+      case 0:
+        header = 'Photos';
+        break;
+      case 1:
+        header = '1 Photo';
+        break;
+      default:
+        header = `${photos.length} Photos`;
+        break;
+    }
     return (
-      <article className='tile is-child notification is-purple'>
+      <article
+        className='tile is-child notification is-purple'
+        style={{ cursor: photos.length ? 'pointer' : 'auto' }}
+        onClick={() => photos.length ? dispatch(spOpenGallery(photos)) : null}
+      >
         <p className='title has-text-white'>
           <i className='fa fa-camera' /> {header}
         </p>

@@ -96,9 +96,6 @@ export default class ResultRow extends Component {
                 >
                   <span className='icon is-small'><i className='fa fa-reply' /></span>
                 </a>
-                <a className='level-item'>
-                  <span className='icon is-small'><i className='fa fa-retweet' /></span>
-                </a>
                 <a className='level-item' title='Add to Wishlist'>
                   <span className='icon is-small'><i className='fa fa-heart' /></span>
                 </a>
