@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { spOpenGallery, spToggleModal } from 'actions/SearchPage';
+import { spOpenGallery, spToggleModal, spFlagItem, spLikeItem } from 'actions/SearchPage';
 
-@connect()
+@connect(state => ({
+  flaggedItems: state.searchPage.get('flaggedItems'),
+  likedItems: state.searchPage.get('likedItems')
+}))
 
 export default class ResultRow extends Component {
   static propTypes = {
+    flaggedItems: PropTypes.object,
+    likedItems: PropTypes.object,
     item: PropTypes.object,
     dispatch: PropTypes.func
   }
@@ -51,7 +56,7 @@ export default class ResultRow extends Component {
   }
 
   render() {
-    const { item, dispatch } = this.props;
+    const { item, flaggedItems, likedItems, dispatch } = this.props;
     const { id, title, photos, docs, price } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
@@ -102,16 +107,24 @@ export default class ResultRow extends Component {
             <nav className='level is-mobile'>
               <div className='level-left'>
                 <a
-                  className='level-item'
+                  className='level-item has-text-grey'
                   title='Contact Seller'
                   onClick={this._setupContactModal}
                 >
                   <span className='icon is-small'><i className='fa fa-reply' /></span>
                 </a>
-                <a className='level-item' title='Save to Favorites'>
+                <a
+                  className={likedItems.has(id) ? 'level-item' : 'level-item has-text-grey'}
+                  title='Save to favorites'
+                  onClick={() => dispatch(spLikeItem(id))}
+                >
                   <span className='icon is-small'><i className='fa fa-heart' /></span>
                 </a>
-                <a className='level-item' title='Report'>
+                <a
+                  className={flaggedItems.has(id) ? 'level-item' : 'level-item has-text-grey'}
+                  title='Report'
+                  onClick={() => dispatch(spFlagItem(id))}
+                >
                   <span className='icon is-small'><i className='fa fa-flag' /></span>
                 </a>
               </div>

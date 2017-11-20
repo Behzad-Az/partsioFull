@@ -8,7 +8,9 @@ import {
   SP_CLOSE_GALLERY,
   SP_CHNG_GALLERY_IMG,
   SP_TOGGLE_MODAL,
-  SP_HANDLE_MODAL_CHNG
+  SP_HANDLE_MODAL_CHNG,
+  SP_FLAG_ITEM,
+  SP_LIKE_ITEM
 } from 'actions/SearchPage';
 
 const initialState = Map({
@@ -18,6 +20,8 @@ const initialState = Map({
   searchText: '',
   prevSearchText: '',
   searchResults: [],
+  flaggedItems: new Set(),
+  likedItems: new Set(),
   noMoreResult: false,
   galleryParams: {
     images: [],
@@ -112,6 +116,20 @@ const actionsMap = {
     let modalParams = { ...state.get('modalParams') };
     modalParams[name] = value;
     return state.merge(Map({ modalParams }));
+  },
+
+  [SP_FLAG_ITEM]: (state, action) => {
+    const { itemId } = action;
+    let flaggedItems = new Set(state.get('flaggedItems'));
+    flaggedItems.has(itemId) ? flaggedItems.delete(itemId) : flaggedItems.add(itemId);
+    return state.merge(Map({ flaggedItems }));
+  },
+
+  [SP_LIKE_ITEM]: (state, action) => {
+    const { itemId } = action;
+    let likedItems = new Set(state.get('likedItems'));
+    likedItems.has(itemId) ? likedItems.delete(itemId) : likedItems.add(itemId);
+    return state.merge(Map({ likedItems }));
   }
 
 };

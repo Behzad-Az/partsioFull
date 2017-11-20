@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import Lightbox from 'react-images';
 import { ipGetItemInfo } from 'actions/ItemPage';
-import { spOpenGallery, spCloseGallery, spChngGalleryImg } from 'actions/SearchPage';
+import { spOpenGallery, spCloseGallery, spChngGalleryImg, spFlagItem, spLikeItem } from 'actions/SearchPage';
 
 @connect(state => ({
   asyncLoading: state.itemPage.get('asyncLoading'),
   asyncError: state.itemPage.get('asyncError'),
   dataLoaded: state.itemPage.get('dataLoaded'),
   item: state.itemPage.get('item'),
-  galleryParams: state.searchPage.get('galleryParams')
+  galleryParams: state.searchPage.get('galleryParams'),
+  flaggedItems: state.searchPage.get('flaggedItems'),
+  likedItems: state.searchPage.get('likedItems')
 }))
 
 export default class ItemPage extends Component {
@@ -20,6 +22,8 @@ export default class ItemPage extends Component {
     asyncError: PropTypes.object,
     dataLoaded: PropTypes.bool,
     item: PropTypes.object,
+    flaggedItems: PropTypes.object,
+    likedItems: PropTypes.object,
     dispatch: PropTypes.func
   }
 
@@ -92,7 +96,8 @@ export default class ItemPage extends Component {
   }
 
   _renderIntroTile() {
-    const { title, price } = this.props.item._source;
+    const { item, flaggedItems, likedItems, dispatch } = this.props;
+    const { id, title, price } = item._source;
     return (
       <article className='intro tile is-child notification is-purple'>
         <p className='title has-text-white'>
@@ -118,11 +123,21 @@ export default class ItemPage extends Component {
         </div>
         <hr />
         <div className='actions'>
-          <p className='has-text-centered has-text-white is-inline-block' style={{ width: '50%', cursor: 'pointer' }}>
-            <i className='fa fa-heart' title='Save to Favorites' />
+          <p className='has-text-centered is-inline-block' style={{ width: '50%' }}>
+            <i
+              className={likedItems.has(id) ? 'fa fa-heart has-text-warning' : 'fa fa-heart has-text-white'}
+              style={{ cursor: 'pointer' }}
+              title='Save to favorites'
+              onClick={() => dispatch(spLikeItem(id))}
+            />
           </p>
-          <p className='has-text-centered has-text-white is-inline-block' style={{ width: '50%', cursor: 'pointer'  }}>
-            <i className='fa fa-flag' title='Report' />
+          <p className='has-text-centered is-inline-block' style={{ width: '50%' }}>
+            <i
+              className={flaggedItems.has(id) ? 'fa fa-flag has-text-warning' : 'fa fa-flag has-text-white'}
+              style={{ cursor: 'pointer' }}
+              title='Report'
+              onClick={() => dispatch(spFlagItem(id))}
+            />
           </p>
         </div>
         <hr />
@@ -338,6 +353,7 @@ export default class ItemPage extends Component {
             <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
           </p>
           <hr />
+          <p className='title is-6 has-text-danger has-text-centered'>This is sample item page meant only for demonstration purposes</p>
           { this._renderCompAfterData() }
         </div>
       </div>

@@ -6,6 +6,8 @@ export const SP_CLOSE_GALLERY = 'SP_CLOSE_GALLERY';
 export const SP_CHNG_GALLERY_IMG = 'SP_CHNG_GALLERY_IMG';
 export const SP_TOGGLE_MODAL = 'SP_TOGGLE_MODAL';
 export const SP_HANDLE_MODAL_CHNG = 'SP_HANDLE_MODAL_CHNG';
+export const SP_FLAG_ITEM = 'SP_FLAG_ITEM';
+export const SP_LIKE_ITEM = 'SP_LIKE_ITEM';
 
 export function spSetAsyncLoading(args) {
   return {
@@ -59,5 +61,19 @@ export function spHandleModalChng(event) {
   return {
     type: SP_HANDLE_MODAL_CHNG,
     event
+  };
+}
+
+export function spFlagItem(itemId) {
+  return {
+    type: SP_FLAG_ITEM,
+    itemId
+  };
+}
+
+export function spLikeItem(itemId) {
+  return {
+    type: SP_LIKE_ITEM,
+    itemId
   };
 }

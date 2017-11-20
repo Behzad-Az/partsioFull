@@ -71,6 +71,7 @@ export default class SearchPage extends Component {
             <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
           </p>
           <hr />
+          <p className='title is-6 has-text-danger has-text-centered'>This is sample search page meant only for demonstration purposes</p>
           <div className='field has-addons'>
             <div className='control is-expanded has-icons-left'>
               <input
