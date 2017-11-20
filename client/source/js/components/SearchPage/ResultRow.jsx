@@ -29,7 +29,7 @@ export default class ResultRow extends Component {
 
   render() {
     const { dispatch, item } = this.props;
-    const { title, search_text, photos, docs, id } = item._source;
+    const { title, search_text, photos, docs, id, price } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
     return (
@@ -61,11 +61,15 @@ export default class ResultRow extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p style={{ whiteSpace: 'pre-wrap' }}>
+              <p className='header'>
                 <Link to={`/item?id=${id}`}><strong>{title}</strong></Link>
-                <br />
-                { this._decodeCompanyRating() }
-                <br />
+              </p>
+              <p className='meta'>
+                <hr />
+                <i className='fa fa-check-circle' /> A+ Reseller | <i className='fa fa-map' /> Canada | <i className='fa fa-clock-o' /> Brad New | <i className='fa fa-truck' /> Avail. Now | <i className='fa fa-dollar' /> {price}
+                <hr />
+              </p>
+              <p className='comments' style={{ whiteSpace: 'pre-wrap' }}>
                 { search_text }
               </p>
             </div>

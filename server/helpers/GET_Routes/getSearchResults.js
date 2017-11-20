@@ -2,8 +2,6 @@ const getSearchResults = (req, res, esClient) => {
 
   const { searchText, resultsOffset, freshReload } = req.query;
 
-  console.log("i'm here 0: ", { searchText });
-
   const getResults = () => {
     const body = {
       size: 5,
@@ -38,13 +36,11 @@ const getSearchResults = (req, res, esClient) => {
 
   getResults()
   .then(results => {
-      console.log("i'm here results", results.hits.hits);
-      setTimeout(function(){
-        //do what you need here
-        res.send({
-          newResults: results.hits.hits,
-          freshReload: freshReload === 'true'
-        });
+    setTimeout(function() {
+      res.send({
+        newResults: results.hits.hits,
+        freshReload: freshReload === 'true'
+      });
     }, 500);
   })
   .catch(err => {

@@ -25,7 +25,9 @@ const getItemInfo = (req, res, esClient) => {
   getInfo()
   .then(result => {
     if (result.hits.total) {
-      res.send({ item: result.hits.hits[0] });
+      setTimeout(function() {
+        res.send({ item: result.hits.hits[0] });
+    }, 500);
     } else {
       throw 'Item not found';
     }

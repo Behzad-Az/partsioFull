@@ -4,6 +4,7 @@
     padding: $default_margin; width: $main_container_width; min-width: $default_min_container_width; max-width: $default_max_container_width; display: block; margin: auto;
     .results-container {
       .box .media {
+        .media-content .content hr { margin: $default_margin/2 0; }
         .media-left {
           .image {
             height: 100%; margin-top: $default_margin/2;
