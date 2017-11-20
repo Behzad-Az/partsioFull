@@ -26,7 +26,7 @@ const getSearchResults = (req, res, esClient) => {
           filter: [
             { term: { expired: false } },
             { term: { removed: false } },
-            { type: { value : 'instrument' } }
+            { type: { value : 'item' } }
           ]
         }
       }

@@ -33,10 +33,10 @@ const bulkIndex = (_index, _type, _data) => {
 };
 
 const populate = () => {
-  const instrumentsRaw = fs.readFileSync('10_instruments.json');
-  const instruments = JSON.parse(instrumentsRaw);
-  console.log(`${instruments.length} items parsed`);
-  bulkIndex('partsio_catalogue', 'instrument', instruments);
+  const itemsRaw = fs.readFileSync('10_items.json');
+  const items = JSON.parse(itemsRaw);
+  console.log(`${items.length} items parsed`);
+  bulkIndex('partsio_catalogue', 'item', items);
 };
 
 populate();
