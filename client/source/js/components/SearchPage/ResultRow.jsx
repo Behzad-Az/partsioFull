@@ -61,12 +61,12 @@ export default class ResultRow extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p>
+              <p style={{ whiteSpace: 'pre-wrap' }}>
                 <Link to={`/item?id=${id}`}><strong>{title}</strong></Link>
                 <br />
                 { this._decodeCompanyRating() }
                 <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                { search_text }
               </p>
             </div>
             <nav className='level is-mobile'>

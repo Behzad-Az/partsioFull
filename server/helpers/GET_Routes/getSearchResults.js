@@ -2,12 +2,14 @@ const getSearchResults = (req, res, esClient) => {
 
   const { searchText, resultsOffset, freshReload } = req.query;
 
+  console.log("i'm here 0: ", { searchText });
+
   const getResults = () => {
     const body = {
-      size: 2,
+      size: 5,
       from: parseInt(resultsOffset),
       _source: {
-        includes: ['title', 'kind', 'id', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text']
+        includes: ['title', 'kind', 'id', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text', 'price']
       },
       sort: [
         { created_at: { order: 'asc' } },
@@ -24,7 +26,6 @@ const getSearchResults = (req, res, esClient) => {
             }
           },
           filter: [
-            { term: { company_id: 'comp1' } },
             { term: { expired: false } },
             { term: { removed: false } },
             { type: { value : 'instrument' } }
@@ -37,6 +38,7 @@ const getSearchResults = (req, res, esClient) => {
 
   getResults()
   .then(results => {
+      console.log("i'm here results", results.hits.hits);
       setTimeout(function(){
         //do what you need here
         res.send({

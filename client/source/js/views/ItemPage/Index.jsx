@@ -92,7 +92,7 @@ export default class ItemPage extends Component {
   }
 
   _renderIntroTile() {
-    const { title } = this.props.item._source;
+    const { title, price } = this.props.item._source;
     return (
       <article className='intro tile is-child notification is-purple'>
         <p className='title has-text-white'>{title}</p>
@@ -109,7 +109,7 @@ export default class ItemPage extends Component {
           <i className='fa fa-truck' /> Avail. Now
         </p>
         <p className='meta has-text-white'>
-          <i className='fa fa-dollar' /> 4,500 USD obo.
+          <i className='fa fa-dollar' /> {price}
         </p>
         <hr />
         <div className='field'>
@@ -158,13 +158,14 @@ export default class ItemPage extends Component {
   }
 
   _renderCommentsTile() {
+    const { search_text } = this.props.item._source;
     return (
       <article className='tile is-child notification is-purple'>
         <p className='title has-text-white'>
           <i className='fa fa-comment-o' /> Comments
         </p>
-        <p className='content has-text-white'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+        <p className='content has-text-white' style={{ whiteSpace: 'pre-wrap' }}>
+          { search_text }
         </p>
       </article>
     );

@@ -71,7 +71,7 @@ export default class HomePage extends Component {
                 <br />Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
               </h2>
               <div className='lchco-ctas'>
-                <Link className='lchco-ctas-button' to='/search?query=how are you?'>
+                <Link className='lchco-ctas-button' to='/search?query=36in 150lb butterfly valve'>
                   Try our search engine - new!
                 </Link>
               </div>
@@ -174,7 +174,7 @@ export default class HomePage extends Component {
                 A Better-Together Approach to Inventory Management
               </h5>
               <div className='lchco-ctas'>
-                <Link className='lchco-ctas-button' to='/search?query=how'>
+                <Link className='lchco-ctas-button' to='/search?query=36in 150lb butterfly valve'>
                   Try our search engine - new!
                 </Link>
               </div>
