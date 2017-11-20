@@ -62,7 +62,7 @@ export default class ResultRow extends Component {
             <div className='control'>
               <button
                 className='button is-fullwidth'
-                title={numDocs ? 'See Attachments' : 'No attachment available'}
+                title={numDocs ? 'See attachments' : 'No attachment available'}
                 disabled={!numDocs}
                 onClick={() => dispatch(spToggleModal({ id: 'docsModal', docs }))}
               >
@@ -75,12 +75,12 @@ export default class ResultRow extends Component {
             <div className='control'>
               <button
                 className='image is-128x128 button is-outlined'
-                title={numPhotos ? 'See Images' : 'No photo available'}
+                title={numPhotos ? 'See photos' : 'No photo available'}
                 disabled={!numPhotos}
                 onClick={() => dispatch(spOpenGallery(photos))}
               >
                 <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
-                { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
+                { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Photos</p> : null }
               </button>
             </div>
             <p className='control has-text-centered'>

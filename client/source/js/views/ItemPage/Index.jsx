@@ -98,6 +98,7 @@ export default class ItemPage extends Component {
         <p className='title has-text-white'>
           {title}
         </p>
+        <hr />
         <div className='metas'>
           <p className='meta has-text-white'>
             <i className='fa fa-check-circle' /> A+ Reseller
@@ -139,7 +140,7 @@ export default class ItemPage extends Component {
     let header;
     switch (docs.length) {
       case 0:
-        header = 'No Attachment';
+        header = 'Docs';
         break;
       case 1:
         header = '1 Doc';
@@ -149,10 +150,11 @@ export default class ItemPage extends Component {
         break;
     }
     return (
-      <article className='tile is-child notification is-purple'>
+      <article className='docs tile is-child notification is-purple'>
         <p className='title has-text-white'>
           <i className='fa fa-paperclip' /> {header}
         </p>
+        <hr />
         <table className='table is-fullwidth is-hoverable'>
           <thead>
             <tr>
@@ -185,13 +187,14 @@ export default class ItemPage extends Component {
     }
     return (
       <article
-        className='tile is-child notification is-purple'
+        className='photos tile is-child notification is-purple'
         style={{ cursor: photos.length ? 'pointer' : 'auto' }}
         onClick={() => photos.length ? dispatch(spOpenGallery(photos)) : null}
       >
         <p className='title has-text-white'>
           <i className='fa fa-camera' /> {header}
         </p>
+        <hr />
         { this._renderGallery() }
       </article>
     );
@@ -200,10 +203,11 @@ export default class ItemPage extends Component {
   _renderCommentsTile() {
     const { search_text } = this.props.item._source;
     return (
-      <article className='tile is-child notification is-purple'>
+      <article className='comments tile is-child notification is-purple'>
         <p className='title has-text-white'>
           <i className='fa fa-comment-o' /> Comments
         </p>
+        <hr />
         <p className='content has-text-white' style={{ whiteSpace: 'pre-wrap' }}>
           { search_text }
         </p>
@@ -215,11 +219,12 @@ export default class ItemPage extends Component {
     const { title } = this.props.item._source;
     const subject = title ? `Re: ${title}` : 'Re: Item for Sale';
     return (
-      <article className='tile is-child notification is-purple'>
+      <article className='contact tile is-child notification is-purple'>
         <div className='content'>
           <p className='title has-text-white'>
             <i className='fa fa-reply' /> Contact
           </p>
+          <hr />
           <div className='content'>
             <div className='field'>
               <label className='label has-text-white'>From</label>
@@ -254,7 +259,7 @@ export default class ItemPage extends Component {
                 <input
                   className='input'
                   type='text'
-                  placeholder='e.g. Bidding on your item for sale'
+                  placeholder='e.g. Item for sale'
                   defaultValue={subject}
                 />
               </div>
@@ -262,7 +267,7 @@ export default class ItemPage extends Component {
             <div className='field'>
               <label className='label has-text-white'>Message</label>
               <div className='control'>
-                <textarea className='textarea' placeholder='Textarea' />
+                <textarea className='textarea' placeholder='Your message' />
               </div>
             </div>
             <div className='field is-grouped'>

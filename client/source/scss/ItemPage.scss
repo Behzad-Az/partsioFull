@@ -1,0 +1,16 @@
+.item-page {
+  background-color: $default_bg_color; min-height: 100vh; padding: 0 $default_margin/2;
+  .main-container {
+    padding: $default_margin; width: 100%; min-width: $default_min_container_width; display: block; margin: auto;
+    .intro.tile, .docs.tile, .photos.tile, .comments.tile, .contact.tile {
+      .title { margin-bottom: $default_margin/2; }
+      hr { margin: $default_margin/2 0; }
+      .metas .meta {
+        margin-bottom: $default_margin/4; &:last-child { margin-bottom: 0 }
+        .fa { margin-right: $default_margin/2; vertical-align: baseline; }
+      }
+      .image { border-radius: 3%; overflow: hidden; }
+    }
+    .is-purple { background-color: lighten(#324376, 10%); }
+  }
+}
