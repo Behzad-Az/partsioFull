@@ -115,7 +115,7 @@ export default class ItemPage extends Component {
     const { item, flaggedItems, likedItems, dispatch } = this.props;
     const { id, title, price } = item._source;
     return (
-      <article className='intro tile is-child notification is-purple'>
+      <article className='intro tile is-child notification is-dark-blue'>
         <p className='title has-text-white'>
           {title}
         </p>
@@ -181,7 +181,7 @@ export default class ItemPage extends Component {
         break;
     }
     return (
-      <article className='docs tile is-child notification is-purple'>
+      <article className='docs tile is-child notification is-dark-blue'>
         <p className='title has-text-white'>
           <i className='fa fa-paperclip' /> {header}
         </p>
@@ -218,7 +218,7 @@ export default class ItemPage extends Component {
     }
     return (
       <article
-        className='photos tile is-child notification is-purple'
+        className='photos tile is-child notification is-dark-blue'
         style={{ cursor: photos.length ? 'pointer' : 'auto' }}
         onClick={() => photos.length ? dispatch(spOpenGallery(photos)) : null}
       >
@@ -234,7 +234,7 @@ export default class ItemPage extends Component {
   _renderCommentsTile() {
     const { search_text } = this.props.item._source;
     return (
-      <article className='comments tile is-child notification is-purple'>
+      <article className='comments tile is-child notification is-dark-blue'>
         <p className='title has-text-white'>
           <i className='fa fa-comment-o' /> Comments
         </p>
@@ -250,7 +250,7 @@ export default class ItemPage extends Component {
     const { title } = this.props.item._source;
     const subject = title ? `Re: ${title}` : 'Re: Item for Sale';
     return (
-      <article className='contact tile is-child notification is-purple'>
+      <article className='contact tile is-child notification is-dark-blue'>
         <div className='content'>
           <p className='title has-text-white'>
             <i className='fa fa-reply' /> Contact
