@@ -19,7 +19,15 @@
   background-color: $default_bg_color; min-height: 100vh; padding: 0 $default_margin/2;
   .main-container {
     padding: $default_margin; width: 100%; min-width: $default_min_container_width; display: block; margin: auto;
-    .is-purple { background-color: lighten(#3d4773, 10%); }
+    .intro.tile {
+      .title { margin-bottom: $default_margin/2; }
+      .meta {
+        margin-bottom: $default_margin/4; &:last-child { margin-bottom: 0 }
+        .fa { margin-right: $default_margin/2; vertical-align: baseline; }
+      }
+      hr { margin: $default_margin 0; }
+    }
+    .is-purple { background-color: lighten(#324376, 10%); }
   }
 }
 

@@ -25,7 +25,6 @@ export default class ItemPage extends Component {
 
   constructor() {
     super();
-    this._decodeCompanyRating = this._decodeCompanyRating.bind(this);
     this._renderDocsTable = this._renderDocsTable.bind(this);
     this._renderGallery = this._renderGallery.bind(this);
     this._renderIntroTile = this._renderIntroTile.bind(this);
@@ -40,16 +39,6 @@ export default class ItemPage extends Component {
     const { location, dispatch } = this.props;
     const params = queryString.parse(location.search);
     dispatch(ipGetItemInfo(params.id));
-  }
-
-  _decodeCompanyRating() {
-    const { company_rating, company_name } = this.props.item._source;
-    switch (company_rating) {
-      case 'A':
-        return <small><i className='fa fa-industry' /> A+ Reseller <i className='fa fa-check-circle' /></small>
-      default:
-        return <small><i className='fa fa-industry' /> {company_name}</small>
-    }
   }
 
   _renderDocsTable() {
@@ -72,7 +61,7 @@ export default class ItemPage extends Component {
   }
 
   _renderGallery() {
-    const { item, dispatch, galleryParams } = this.props;
+    const { item, galleryParams, dispatch } = this.props;
     const { photos } = item._source;
     if (photos.length) {
       const { isOpen, currentImage, images } = galleryParams;
@@ -105,9 +94,24 @@ export default class ItemPage extends Component {
   _renderIntroTile() {
     const { title } = this.props.item._source;
     return (
-      <article className='tile is-child notification is-purple'>
+      <article className='intro tile is-child notification is-purple'>
         <p className='title has-text-white'>{title}</p>
-        <p className='subtitle has-text-white'>{ this._decodeCompanyRating() }</p>
+        <p className='meta has-text-white'>
+          <i className='fa fa-check-circle' /> A+ Reseller
+        </p>
+        <p className='meta has-text-white'>
+          <i className='fa fa-map' /> Canada
+        </p>
+        <p className='meta has-text-white'>
+          <i className='fa fa-clock-o' /> Brad New
+        </p>
+        <p className='meta has-text-white'>
+          <i className='fa fa-truck' /> Avail. Now
+        </p>
+        <p className='meta has-text-white'>
+          <i className='fa fa-dollar' /> 4,500 USD obo.
+        </p>
+        <hr />
         <div className='field'>
           <div className='control'>
             <button className='button is-fullwidth'>Buy Now!</button>
@@ -118,10 +122,12 @@ export default class ItemPage extends Component {
   }
 
   _renderDocsTile() {
+    const { docs } = this.props.item._source;
+    const header = docs.length ? `${docs.length} Docs` : 'Docs';
     return (
       <article className='tile is-child notification is-purple'>
         <p className='title has-text-white'>
-          <i className='fa fa-paperclip' /> Docs
+          <i className='fa fa-paperclip' /> {header}
         </p>
         <table className='table is-fullwidth is-hoverable'>
           <thead>
@@ -139,12 +145,13 @@ export default class ItemPage extends Component {
   }
 
   _renderPhotosTile() {
+    const { photos } = this.props.item._source;
+    const header = photos.length ? `${photos.length} Photos` : 'Photos';
     return (
       <article className='tile is-child notification is-purple'>
         <p className='title has-text-white'>
-          <i className='fa fa-camera' /> Photos
+          <i className='fa fa-camera' /> {header}
         </p>
-        <p className='subtitle has-text-white'>With an image</p>
         { this._renderGallery() }
       </article>
     );
@@ -170,7 +177,7 @@ export default class ItemPage extends Component {
       <article className='tile is-child notification is-purple'>
         <div className='content'>
           <p className='title has-text-white'>
-            <i className='fa fa-reply' /> Contact / Buy
+            <i className='fa fa-reply' /> Contact
           </p>
           <div className='content'>
             <div className='field'>
@@ -228,12 +235,6 @@ export default class ItemPage extends Component {
                 <button className='button is-text has-text-white'>Cancel</button>
               </div>
             </div>
-            <hr />
-            <div className='field'>
-              <div className='control'>
-                <button className='button is-fullwidth'>Buy Now!</button>
-              </div>
-            </div>
           </div>
         </div>
       </article>
@@ -287,6 +288,7 @@ export default class ItemPage extends Component {
           <p className='title is-2 has-text-centered'>
             <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
           </p>
+          <hr />
           { this._renderCompAfterData() }
         </div>
       </div>

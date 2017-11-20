@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { hpHandleChange, hpSetEmailStatus } from 'actions/HomePage';
 
 @connect(state => ({
@@ -69,6 +70,11 @@ export default class HomePage extends Component {
                 <br />Our clients benefit greatly by sharing inventory information such as excess levels and procurement needs.
                 <br />Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
               </h2>
+              <div className='lchco-ctas'>
+                <Link className='lchco-ctas-button' to='/search?query=how are you?'>
+                  Try our search engine - new!
+                </Link>
+              </div>
               <div className='lchco-ctas'>
                 <input
                   className='lchco-ctas-input'
@@ -167,6 +173,11 @@ export default class HomePage extends Component {
               <h5 className='lchco-heading'>
                 A Better-Together Approach to Inventory Management
               </h5>
+              <div className='lchco-ctas'>
+                <Link className='lchco-ctas-button' to='/search?query=how'>
+                  Try our search engine - new!
+                </Link>
+              </div>
               <div className='lchco-ctas'>
                 <input
                   className='lchco-ctas-input'

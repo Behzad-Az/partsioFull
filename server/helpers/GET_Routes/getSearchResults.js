@@ -7,23 +7,13 @@ const getSearchResults = (req, res, esClient) => {
       size: 2,
       from: parseInt(resultsOffset),
       _source: {
-        includes: ['title', 'kind', 'id', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text'],
-        // "excludes": [ "*.description" ]
+        includes: ['title', 'kind', 'id', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text']
       },
       sort: [
         { created_at: { order: 'asc' } },
         { title: 'desc' },
         '_score'
       ],
-      // query: {
-      //   bool: {
-      //     must: [
-      //       { term: { company_id: 'comp1' } },
-      //       { term: { expired: false } },
-      //       { type: { value : 'instrument' } }
-      //     ]
-      //   }
-      // }
       query: {
         bool: {
           must: {
@@ -47,10 +37,13 @@ const getSearchResults = (req, res, esClient) => {
 
   getResults()
   .then(results => {
-    res.send({
-      newResults: results.hits.hits,
-      freshReload: freshReload === 'true'
-    });
+      setTimeout(function(){
+        //do what you need here
+        res.send({
+          newResults: results.hits.hits,
+          freshReload: freshReload === 'true'
+        });
+    }, 500);
   })
   .catch(err => {
     console.error('Error inside getSearchResults.js: ', err);
