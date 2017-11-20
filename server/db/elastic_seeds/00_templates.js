@@ -14,14 +14,14 @@ const newIndex = {
     mappings: {
       item: {
         properties: {
-          id: { type: 'string' },
+          id: { type: 'text' },
           created_at: { type: 'date', format: "yyyy-MM-dd'T'HH:mm:ss.SSSZ" },
           title: { type: 'text', fielddata: true },
-          kind: { type: 'string' },
+          kind: { type: 'text' },
           photos: { type: 'nested' },
           docs: { type: 'nested' },
-          company_name: { type: 'string' },
-          company_id: { type: 'string' },
+          company_name: { type: 'text' },
+          company_id: { type: 'text' },
           search_text: { type: 'text' },
           expired: { type: 'boolean' },
           removed: { type: 'boolean' }
