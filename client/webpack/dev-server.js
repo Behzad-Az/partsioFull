@@ -10,6 +10,10 @@ const devServer = {
     '/api': {
       target: IS_PRODUCTION ? 'http://104.236.163.74' : 'http://127.0.0.1:19001',
       secure: true
+    },
+    '/imagesapi': {
+      target: IS_PRODUCTION ? 'http://104.236.163.74' : 'http://127.0.0.1:19001',
+      secure: true
     }
   },
   inline: !IS_PRODUCTION,

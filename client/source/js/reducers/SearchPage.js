@@ -65,8 +65,8 @@ const actionsMap = {
   [SP_OPEN_GALLERY]: (state, action) => {
     const images = action.photos.map(photo => {
       return {
-        src: photo.link,
-        thumbnail: photo.link,
+        src: `/imagesapi/${photo.name}`,
+        thumbnail: `/imagesapi/${photo.name}`,
         caption: photo.caption,
         orientation: 'landscape'
       };

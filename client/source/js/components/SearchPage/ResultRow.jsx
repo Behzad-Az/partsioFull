@@ -84,7 +84,7 @@ export default class ResultRow extends Component {
                 disabled={!numPhotos}
                 onClick={() => dispatch(spOpenGallery(photos))}
               >
-                <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
+                <img src={numPhotos ? `/imagesapi/${photos[0].name}` : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Photo' />
                 { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Photos</p> : null }
               </button>
             </div>

@@ -1,98 +1,12 @@
 [
   {
-    "id":"fXt6U3UwM0o",
-    "title":"Item 1",
-    "kind":"Pressure Transmitter",
-    "photos":[
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "caption":"photo1.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "caption":"photo1.2"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider3.jpg", "caption":"photo1.3"}
-    ],
-    "docs":[
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc1.1"},
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc1.2"},
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider3.jpg", "title":"doc1.3"}
-    ],
-    "company_name":"Shell",
-    "company_id":["comp1", "comp2"],
-    "company_rating":"A",
-    "search_text":"Hello\nhow are you? 1",
-    "price":"Contact Seller",
-    "expired":false,
-    "removed":false,
-    "created_at":"2012-02-02T11:04:06.000Z"
-  },
-  {
-    "id":"WVZ1P82K4tJ",
-    "title":"Item 2",
-    "kind":"Temperature Transmitter",
-    "photos":[
-
-    ],
-    "docs":[
-
-    ],
-    "company_name":"Shell",
-    "company_id":"comp1",
-    "company_rating":"A",
-    "search_text":"Hello how are you? 2",
-    "price":"Contact Seller",
-    "expired":false,
-    "removed":false,
-    "created_at":"2013-02-02T11:04:06.000Z"
-  },
-  {
-    "id":"K3IFhDYlu0L",
-    "title":"Item 3",
-    "kind":"Flow Transmitter",
-    "photos":[
-      {"link":"https://www.w3schools.com/w3css/img_fjords.jpg", "caption":"photo3.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "caption":"photo3.2"},
-      {"link": "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "caption":"photo3.3"}
-    ],
-    "docs":[
-      {"name":"https://www.w3schools.com/w3css/img_fjords.jpg", "title":"doc3.1"},
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc3.2"},
-      {"name": "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc3.3"}
-    ],
-    "company_name":"Shell",
-    "company_id":"comp1",
-    "company_rating":"A",
-    "search_text":"Hello how are you? 3",
-    "price":"Contact Seller",
-    "expired":false,
-    "removed":false,
-    "created_at":"2014-02-02T11:04:06.000Z"
-  },
-  {
-    "id":"1Uoyn12Q9iQ",
-    "title":"Item 4",
-    "kind":"Pressure Transmitter",
-    "photos":[
-      {"link":"https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg", "caption":"photo4.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "caption":"photo4.2"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "caption":"photo4.3"}
-    ],
-    "docs":[
-      {"name":"https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg", "title":"doc4.1"},
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc4.2"},
-      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc4.3"}
-    ],
-    "company_name":"Shell",
-    "company_id":"comp1",
-    "company_rating":"A",
-    "search_text":"Hello how are you? 4",
-    "price":"Contact Seller",
-    "expired":false,
-    "removed":false,
-    "created_at":"2015-02-02T11:04:06.000Z"
-  },
-  {
     "id":"lqNk4vEXeJM",
-    "title":"Dezurik Butterfly Valve, 36in, 150lb",
+    "title":"Dezurik Butterfly Valve, 24in, 150lb",
     "kind":"Valve",
     "photos":[
-      {"link":"http://www.dezurik.com/products/dezurik-on-center-resilient-seated-butterfly-valves-bos-cl.jpg", "caption":"DeZURIK 36in Lugged Butterfly"}
+      {"name":"WsKyb3tQQRe.jpg", "caption":"DeZURIK 24in Lugged Butterfly"},
+      {"name":"ZBwW6AZWuQx.png", "caption":"Dimensions Part I"},
+      {"name":"lFjwmRZSbis.png", "caption":"Dimensions Part II"}
     ],
     "docs":[
       {"name":"oCfbkxB2vDG.pdf", "title":"Dezurik Butterfly Valve Manual"}
@@ -100,10 +14,30 @@
     "company_name":"Suncor",
     "company_id":"comp2",
     "company_rating":"A+",
-    "search_text":"DeZURIK AWWA Butterfly Valves meet the requirements of AWWA C504 and C516 standards. They are used for shutoff on clean water and gases. Offset disc design, corrosion resistant shaft, stainless steel disc edge, and self-compensating shaft seals are features on all DeZURIK AWWA valves. Molded-in body seat with disc locators provides positive sealing and longer seat life on sizes 3-20” (80-500mm). Large valves, 24-144” (600-3600mm), feature adjustable, replaceable seat, non-hollow disc structure, and rubber seat retained within a dovetail groove in the valve body and locked in place by an epoxy wedge.\nSize: 36in\nTemperature Rating: 145C\nClass: 150\nPressure Rating: 150 psi\nEnd Connection: Flanged\nActuator Type: Chain Wheel\nBody Material: Carbon Steel",
+    "search_text":"DeZURIK AWWA Butterfly Valves meet the requirements of AWWA C504 and C516 standards. They are used for shutoff on clean water and gases. Offset disc design, corrosion resistant shaft, stainless steel disc edge, and self-compensating shaft seals are features on all DeZURIK AWWA valves. Molded-in body seat with disc locators provides positive sealing and longer seat life on sizes 3-20” (80-500mm). Large valves, 24-144” (600-3600mm), feature adjustable, replaceable seat, non-hollow disc structure, and rubber seat retained within a dovetail groove in the valve body and locked in place by an epoxy wedge.\nSize: 24in\nTemperature Rating: 145C\nClass: 150\nPressure Rating: 150 psi\nEnd Connection: Flanged\nActuator Type: Chain Wheel\nBody Material: Carbon Steel",
     "price":"Contact Seller",
     "expired":false,
     "removed":false,
     "created_at":"2016-02-02T11:04:06.000Z"
+  },
+  {
+    "id":"u9MFzKr89PD",
+    "title":"Fisher High-Performance Butterfly Valve, 24in, 150lb",
+    "kind":"Valve",
+    "photos":[
+      {"name":"XvCeUuG657Q.jpg", "caption":"Fisher 8532 High Performance Butterfly Valve"},
+      {"name":"Hgn1FeOal0G.png", "caption":"Assembly Drawing"}
+    ],
+    "docs":[
+      {"name":"ZBwW6AZWuQx.pdf", "title":"Fisher 8532 high performance butterfly valve"}
+    ],
+    "company_name":"Suncor",
+    "company_id":"comp2",
+    "company_rating":"A+",
+    "search_text":"· Certifications:\n      SIL capable, PED, CRN, Fugitive Emission, NACE, ATEX, CUTR, Fire Safe\n· Critical Service\n      General Service\n· Flow Characteristics\n      Linear\n· Material\n      Carbon Steel, Stainless, Alloy\n· Operating Temperature\n      Standard Temperature, High Temperature, Cryogenic\n· Power Source\n      Electric, Hydraulic, Pneumatic, Electro-Hydraulic\n· Pressure Class\n      ASME\n· Process Connection Type\n      Flanged, Single Flanged, Double Flanged, Lugged, Wafer\n· Seat / Seal Type\n      Metal, Soft\n· Shutoff Class\n      MSS SP-61, Class IV (FCI 70-2), Class VI (FCI 70-2), Flow Ring\n· Standards\n      B16.34\n· Stem\n      Live Loaded, Adjustable Packing\n· Valve Size\n      NPS 24\n· Valve Size Standard\n      NPS",
+    "price":"25,000 USD",
+    "expired":false,
+    "removed":false,
+    "created_at":"2016-03-02T11:04:06.000Z"
   }
 ]

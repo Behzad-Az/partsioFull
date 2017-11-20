@@ -99,7 +99,7 @@ export default class ItemPage extends Component {
             showThumbnails={true}
             theme={undefined}
           />
-          <img src={photos[0].link} />
+          <img src={`/imagesapi/${photos[0].name}`} />
         </figure>
       );
     } else {
@@ -369,7 +369,7 @@ export default class ItemPage extends Component {
             <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
           </p>
           <hr />
-          <p className='title is-6 has-text-danger has-text-centered'>This is sample item page meant only for demonstration purposes</p>
+          <p className='title is-6 has-text-centered'>This is a sample item page meant only for demonstration purposes</p>
           { this._renderCompAfterData() }
         </div>
       </div>

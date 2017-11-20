@@ -52,7 +52,7 @@ export default class HomePage extends Component {
             <div className='lchco-col-12 lchco-spread'>
               <div>
                 <a className='lchco-logo'>
-                  part·si·o
+                  <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'middle' }} /> part·si·o
                 </a>
               </div>
               <div>

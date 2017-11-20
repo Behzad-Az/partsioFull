@@ -7,6 +7,7 @@ const express = require('express');
 const url = require('url');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 const connection = require('./db/knexfile.js').development;
 const knex = require('knex')(connection);
 const elasticsearch = require('elasticsearch');
@@ -20,6 +21,7 @@ const esClient = new elasticsearch.Client({
 // ***************************************************
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/public')));
 
 // ***************************************************
 // PORT
