@@ -1,13 +1,11 @@
 const getItemInfo = (req, res, esClient) => {
 
-  const { _id } = req.query;
-
   const getInfo = () => {
     const body = {
       size: 1,
       from: 0,
       _source: {
-        includes: ['title', 'kind', 'id', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text', 'price'],
+        includes: ['id', 'title', 'kind', 'search_text', 'photos', 'docs', 'company_id', 'company_name', 'company_rating', 'created_at', 'search_text', 'price'],
       },
       query: {
         bool: {

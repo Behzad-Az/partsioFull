@@ -15,11 +15,11 @@ export default class ResultRow extends Component {
   constructor() {
     super();
     this._renderComment = this._renderComment.bind(this);
+    this._setupContactModal = this._setupContactModal.bind(this);
   }
 
   _renderComment() {
     let { id, search_text } = this.props.item._source;
-    // search_text = search_text.length > 280 ? `${search_text.slice(0, 277)}...` : search_text;
     if (search_text.length > 280) {
       return (
       <p className='comments' style={{ whiteSpace: 'pre-wrap' }}>
@@ -35,8 +35,23 @@ export default class ResultRow extends Component {
     }
   }
 
+  _setupContactModal() {
+    const { item, dispatch } = this.props;
+    dispatch(spToggleModal({
+      id: 'contactModal',
+      itemId: item._source.id,
+      fromName: '',
+      fromEmail: '',
+      fromPhone: '',
+      subject: `Re: ${item._source.title}`,
+      content: '',
+      asyncLoading: false,
+      postStatus: null
+    }));
+  }
+
   render() {
-    const { dispatch, item } = this.props;
+    const { item, dispatch } = this.props;
     const { id, title, photos, docs, price } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
@@ -57,7 +72,6 @@ export default class ResultRow extends Component {
                 <span>Docs</span>
               </button>
             </div>
-
             <div className='control'>
               <button
                 className='image is-128x128 button is-outlined'
@@ -69,22 +83,20 @@ export default class ResultRow extends Component {
                 { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
               </button>
             </div>
-
             <p className='control has-text-centered'>
               <Link to={`/item?id=${id}`}>More Info</Link>
             </p>
-
           </div>
           <div className='media-content'>
             <div className='content'>
               <p className='header'>
                 <Link to={`/item?id=${id}`}><strong>{title}</strong></Link>
               </p>
+              <hr />
               <p className='meta'>
-                <hr />
                 <i className='fa fa-check-circle' /> A+ Reseller | <i className='fa fa-map' /> Canada | <i className='fa fa-clock-o' /> Brad New | <i className='fa fa-truck' /> Avail. Now | <i className='fa fa-dollar' /> {price}
-                <hr />
               </p>
+              <hr />
               { this._renderComment() }
             </div>
             <nav className='level is-mobile'>
@@ -92,7 +104,7 @@ export default class ResultRow extends Component {
                 <a
                   className='level-item'
                   title='Contact Seller'
-                  onClick={() => dispatch(spToggleModal({ id: 'contactModal', item }))}
+                  onClick={this._setupContactModal}
                 >
                   <span className='icon is-small'><i className='fa fa-reply' /></span>
                 </a>

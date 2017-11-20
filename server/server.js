@@ -7,7 +7,7 @@ const express = require('express');
 const url = require('url');
 const app = express();
 const bodyParser = require('body-parser');
-const connection = require('./db/knexfile.js').production;
+const connection = require('./db/knexfile.js').development;
 const knex = require('knex')(connection);
 const elasticsearch = require('elasticsearch');
 const esClient = new elasticsearch.Client({
@@ -33,6 +33,7 @@ const server = app.listen(PORT, '127.0.0.1', 'localhost', () => console.log(`Lis
 const getSearchResults = require('./helpers/GET_Routes/getSearchResults');
 const getItemInfo = require('./helpers/GET_Routes/getItemInfo');
 const postNewEmailEntry = require('./helpers/POST_Routes/postNewEmailEntry');
+const postNewMessage = require('./helpers/POST_Routes/postNewMessage');
 
 
 // ***************************************************
@@ -49,6 +50,10 @@ app.get('/api/item', (req, res) => {
 // ***************************************************
 // ROUTES - POST
 // ***************************************************
+app.post('/api/messages', (req, res) => {
+  postNewMessage(req, res, knex);
+});
+
 app.post('/api/email_entries', (req, res) => {
   postNewEmailEntry(req, res, knex);
 });

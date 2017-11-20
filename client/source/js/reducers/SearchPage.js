@@ -2,12 +2,13 @@ import { Map } from 'immutable';
 
 import {
   SP_SET_ASYNC_FLAG,
-  SP_HANDLE_CHANGE,
+  SP_HANDLE_CHNG,
   SP_CONCAT_RESULTS,
   SP_OPEN_GALLERY,
   SP_CLOSE_GALLERY,
   SP_CHNG_GALLERY_IMG,
-  SP_TOGGLE_MODAL
+  SP_TOGGLE_MODAL,
+  SP_HANDLE_MODAL_CHNG
 } from 'actions/SearchPage';
 
 const initialState = Map({
@@ -33,7 +34,7 @@ const actionsMap = {
     return state.merge((Map(action.args)));
   },
 
-  [SP_HANDLE_CHANGE]: (state, action) => {
+  [SP_HANDLE_CHNG]: (state, action) => {
     const { name, value } = action.event.target;
     let stateObj = {};
     stateObj[name] = value;
@@ -104,6 +105,13 @@ const actionsMap = {
 
   [SP_TOGGLE_MODAL]: (state, action) => {
     return state.merge(Map({ modalParams: action.modalParams }));
+  },
+
+  [SP_HANDLE_MODAL_CHNG]: (state, action) => {
+    const { name, value } = action.event.target;
+    let modalParams = { ...state.get('modalParams') };
+    modalParams[name] = value;
+    return state.merge(Map({ modalParams }));
   }
 
 };

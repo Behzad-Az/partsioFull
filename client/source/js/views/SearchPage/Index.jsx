@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import { spSetAsyncLoading, spHandleChange, spConcatResults } from 'actions/SearchPage';
+import { spSetAsyncLoading, spHandleChng, spConcatResults } from 'actions/SearchPage';
 import ResultsContainer from 'components/SearchPage/ResultsContainer.jsx';
 
 @connect(state => ({
@@ -32,7 +32,7 @@ export default class SearchPage extends Component {
         value: query
       }
     };
-    dispatch(spHandleChange(event));
+    dispatch(spHandleChng(event));
     this._getSearchResults(query);
   }
 
@@ -80,7 +80,7 @@ export default class SearchPage extends Component {
                 value={searchText}
                 placeholder='e.g. butterfly valve 150# 24in'
                 onKeyUp={this._handleEnterKey}
-                onChange={event => dispatch(spHandleChange(event))}
+                onChange={event => dispatch(spHandleChng(event))}
               />
               <span className='icon is-small is-left'>
                 <i className='fa fa-search' />
