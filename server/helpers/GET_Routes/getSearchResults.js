@@ -41,7 +41,7 @@ const getSearchResults = (req, res, esClient) => {
         newResults: results.hits.hits,
         freshReload: freshReload === 'true'
       });
-    }, 500);
+    }, 200);
   })
   .catch(err => {
     console.error('Error inside getSearchResults.js: ', err);

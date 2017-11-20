@@ -14,29 +14,37 @@ export default class ResultRow extends Component {
 
   constructor() {
     super();
-    this._decodeCompanyRating = this._decodeCompanyRating.bind(this);
+    this._renderComment = this._renderComment.bind(this);
   }
 
-  _decodeCompanyRating() {
-    const { company_rating, company_name } = this.props.item._source;
-    switch (company_rating) {
-      case 'A':
-        return <small><i className='fa fa-industry' /> A+ Reseller <i className='fa fa-check-circle' /></small>
-      default:
-        return <small><i className='fa fa-industry' /> {company_name}</small>
+  _renderComment() {
+    let { id, search_text } = this.props.item._source;
+    // search_text = search_text.length > 280 ? `${search_text.slice(0, 277)}...` : search_text;
+    if (search_text.length > 280) {
+      return (
+      <p className='comments' style={{ whiteSpace: 'pre-wrap' }}>
+        { `${search_text.slice(0, 277)}...` } <Link to={`/item?id=${id}`}>More</Link>
+      </p>
+      );
+    } else {
+      return (
+        <p className='comments' style={{ whiteSpace: 'pre-wrap' }}>
+          { search_text }
+        </p>
+      );
     }
   }
 
   render() {
     const { dispatch, item } = this.props;
-    const { title, search_text, photos, docs, id, price } = item._source;
+    const { id, title, photos, docs, price } = item._source;
     const numPhotos = photos.length;
     const numDocs = docs.length;
     return (
       <div className='box'>
         <article className='media'>
           <div className='media-left'>
-            <p className='control'>
+            <div className='control'>
               <button
                 className='button is-fullwidth'
                 title={numDocs ? 'See Attachments' : 'No attachment available'}
@@ -48,16 +56,24 @@ export default class ResultRow extends Component {
                 </span>
                 <span>Docs</span>
               </button>
+            </div>
+
+            <div className='control'>
+              <button
+                className='image is-128x128 button is-outlined'
+                title={numPhotos ? 'See Images' : 'No photo available'}
+                disabled={!numPhotos}
+                onClick={() => dispatch(spOpenGallery(photos))}
+              >
+                <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
+                { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
+              </button>
+            </div>
+
+            <p className='control has-text-centered'>
+              <Link to={`/item?id=${id}`}>More Info</Link>
             </p>
-            <button
-              className='image is-128x128 button is-outlined'
-              title={numPhotos ? 'See Images' : 'No photo available'}
-              disabled={!numPhotos}
-              onClick={() => dispatch(spOpenGallery(photos))}
-            >
-              <img src={numPhotos ? photos[0].link : 'http://www.royallepagesudbury.ca/images/no-image.png'} alt='Images' />
-              { numPhotos ? <p className='has-text-centered is-size-7 has-text-grey'>Images</p> : null }
-            </button>
+
           </div>
           <div className='media-content'>
             <div className='content'>
@@ -69,9 +85,7 @@ export default class ResultRow extends Component {
                 <i className='fa fa-check-circle' /> A+ Reseller | <i className='fa fa-map' /> Canada | <i className='fa fa-clock-o' /> Brad New | <i className='fa fa-truck' /> Avail. Now | <i className='fa fa-dollar' /> {price}
                 <hr />
               </p>
-              <p className='comments' style={{ whiteSpace: 'pre-wrap' }}>
-                { search_text }
-              </p>
+              { this._renderComment() }
             </div>
             <nav className='level is-mobile'>
               <div className='level-left'>
