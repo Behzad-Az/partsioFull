@@ -32,6 +32,7 @@ const server = app.listen(PORT, '127.0.0.1', 'localhost', () => console.log(`Lis
 // ***************************************************
 const getSearchResults = require('./helpers/GET_Routes/getSearchResults');
 const getItemInfo = require('./helpers/GET_Routes/getItemInfo');
+const getDocDownload = require('./helpers/GET_Routes/getDocDownload');
 const postNewEmailEntry = require('./helpers/POST_Routes/postNewEmailEntry');
 const postNewMessage = require('./helpers/POST_Routes/postNewMessage');
 
@@ -45,6 +46,10 @@ app.get('/api/search_results', (req, res) => {
 
 app.get('/api/item', (req, res) => {
   getItemInfo(req, res, esClient);
+});
+
+app.get('/api/docs', (req, res) => {
+  getDocDownload(req, res);
 });
 
 // ***************************************************

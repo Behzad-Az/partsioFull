@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import Lightbox from 'react-images';
 import { ipGetItemInfo } from 'actions/ItemPage';
 import { spOpenGallery, spCloseGallery, spChngGalleryImg, spFlagItem, spLikeItem } from 'actions/SearchPage';
+import download from 'components/Global/download';
 
 @connect(state => ({
   asyncLoading: state.itemPage.get('asyncLoading'),
@@ -29,6 +30,7 @@ export default class ItemPage extends Component {
 
   constructor() {
     super();
+    this._getDocDownload = this._getDocDownload.bind(this);
     this._renderDocsTable = this._renderDocsTable.bind(this);
     this._renderGallery = this._renderGallery.bind(this);
     this._renderIntroTile = this._renderIntroTile.bind(this);
@@ -45,11 +47,25 @@ export default class ItemPage extends Component {
     dispatch(ipGetItemInfo(params.id));
   }
 
+  _getDocDownload(doc) {
+    const { name, title } = doc;
+    fetch(`/api/docs?name=${name}`, {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.status === 200) { return response.blob(); }
+      else { throw 'Unable to download file'; }
+    })
+    .then(blob => download(blob, title))
+    .catch(err => console.error('Error -', err));
+  }
+
   _renderDocsTable() {
     const { docs } = this.props.item._source;
     if (docs.length) {
       return docs.map((doc, index) =>
-        <tr key={index} style={{ cursor: 'pointer' }}>
+        <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this._getDocDownload(doc)}>
           <td>{doc.title}</td>
           <td className='has-text-centered'><i className='fa fa-file-text-o' /></td>
         </tr>

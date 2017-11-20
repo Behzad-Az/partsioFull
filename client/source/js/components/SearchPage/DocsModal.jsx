@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { spToggleModal } from 'actions/SearchPage';
+import download from 'components/Global/download';
 
 @connect(state => ({
   modalParams: state.searchPage.get('modalParams'),
@@ -15,8 +16,23 @@ export default class docsModal extends Component {
 
   constructor() {
     super();
+    this._getDocDownload = this._getDocDownload.bind(this);
     this._closeModal = this._closeModal.bind(this);
     this._renderDocList = this._renderDocList.bind(this);
+  }
+
+  _getDocDownload(doc) {
+    const { name, title } = doc;
+    fetch(`/api/docs?name=${name}`, {
+      method: 'GET',
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.status === 200) { return response.blob(); }
+      else { throw 'Unable to download file'; }
+    })
+    .then(blob => download(blob, title))
+    .catch(err => console.error('Error -', err));
   }
 
   _closeModal() {
@@ -36,7 +52,7 @@ export default class docsModal extends Component {
           </thead>
           <tbody>
             { docs.map((doc, index) =>
-              <tr key={index} style={{ cursor: 'pointer' }}>
+              <tr key={index} style={{ cursor: 'pointer' }} onClick={() => this._getDocDownload(doc)}>
                 <td>{doc.title}</td>
                 <td className='has-text-centered'><i className='fa fa-file-text-o' /></td>
               </tr>

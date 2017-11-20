@@ -9,9 +9,9 @@
       {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider3.jpg", "caption":"photo1.3"}
     ],
     "docs":[
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc1.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc1.2"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider3.jpg", "title":"doc1.3"}
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc1.1"},
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc1.2"},
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider3.jpg", "title":"doc1.3"}
     ],
     "company_name":"Shell",
     "company_id":["comp1", "comp2"],
@@ -51,9 +51,9 @@
       {"link": "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "caption":"photo3.3"}
     ],
     "docs":[
-      {"link":"https://www.w3schools.com/w3css/img_fjords.jpg", "title":"doc3.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc3.2"},
-      {"link": "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc3.3"}
+      {"name":"https://www.w3schools.com/w3css/img_fjords.jpg", "title":"doc3.1"},
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc3.2"},
+      {"name": "https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc3.3"}
     ],
     "company_name":"Shell",
     "company_id":"comp1",
@@ -74,9 +74,9 @@
       {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "caption":"photo4.3"}
     ],
     "docs":[
-      {"link":"https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg", "title":"doc4.1"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc4.2"},
-      {"link":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc4.3"}
+      {"name":"https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg", "title":"doc4.1"},
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider2.jpg", "title":"doc4.2"},
+      {"name":"https://s3-us-west-1.amazonaws.com/powr/defaults/image-slider1.jpg", "title":"doc4.3"}
     ],
     "company_name":"Shell",
     "company_id":"comp1",
@@ -95,7 +95,7 @@
       {"link":"http://www.dezurik.com/products/dezurik-on-center-resilient-seated-butterfly-valves-bos-cl.jpg", "caption":"DeZURIK 36in Lugged Butterfly"}
     ],
     "docs":[
-      {"link":"https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg", "title":"doc4.1"}
+      {"name":"oCfbkxB2vDG.pdf", "title":"Dezurik Butterfly Valve Manual"}
     ],
     "company_name":"Suncor",
     "company_id":"comp2",

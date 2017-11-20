@@ -11,6 +11,8 @@
       }
       .image { border-radius: 3%; overflow: hidden; }
     }
-    .is-purple { background-color: lighten(#324376, 10%); }
+    // .is-purple { background-color: lighten(#324376, 15%); }
+    // .is-purple { background-color: darken(rgb(162, 195, 228), 30%); }
+    .is-purple { background-color: #405468; }
   }
 }
