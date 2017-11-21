@@ -72,7 +72,7 @@ export default class ResultRow extends Component {
                 onClick={() => dispatch(spToggleModal({ id: 'docsModal', docs }))}
               >
                 <span className='icon is-small'>
-                  <img src='http://www.iconninja.com/files/557/581/101/attachment-attach-files-clip-files-documents-icon.svg' />
+                  <img src='assets/svg/attachment.svg' />
                 </span>
                 <span>Docs</span>
               </button>

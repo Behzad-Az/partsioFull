@@ -105,7 +105,7 @@ export default class ItemPage extends Component {
     } else {
       return (
         <figure className='image is-square'>
-          <img src='http://www.entechdesigns.com/new_site/wp-content/themes/en-tech/images/not_available_icon.jpg' />
+          <img src='assets/img/no-photo-available.jpg' />
         </figure>
       );
     }

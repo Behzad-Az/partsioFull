@@ -165,11 +165,11 @@ export default class HomePage extends Component {
           <div className='lchco-container-lrg'>
             <div className='lchco-logos lchco-flex'>
 
-              <img className='lchco-col-4' src='assets/img/Eldorado.svg' />
+              <img className='lchco-col-4' src='assets/svg/Eldorado.svg' />
 
-              <img className='lchco-col-4' src='assets/img/NewGold.svg' />
+              <img className='lchco-col-4' src='assets/svg/NewGold.svg' />
 
-              <img className='lchco-col-4' src='assets/img/Kinross.svg' />
+              <img className='lchco-col-4' src='assets/svg/Kinross.svg' />
             </div>
           </div>
         </div>
