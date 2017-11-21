@@ -42,7 +42,7 @@ export default class ItemPage extends Component {
   }
 
   componentDidMount() {
-    const { location, dispatch } = this.props;
+    const { location, item, dispatch } = this.props;
     const params = queryString.parse(location.search);
     dispatch(ipGetItemInfo(params.id));
   }
@@ -322,7 +322,7 @@ export default class ItemPage extends Component {
   }
 
   _renderCompAfterData() {
-    const { asyncLoading, asyncError, dataLoaded, item, dispatch } = this.props;
+    const { asyncLoading, asyncError, dataLoaded, item } = this.props;
     if (asyncLoading) {
       return (
         <p className='has-text-centered'>
@@ -331,6 +331,7 @@ export default class ItemPage extends Component {
         </p>
       );
     } else if (dataLoaded && !asyncError) {
+      document.title = item._source.title;
       return (
         <div className='tile is-ancestor'>
           <div className='tile is-vertical is-8'>

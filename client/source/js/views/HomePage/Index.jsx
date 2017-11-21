@@ -22,6 +22,10 @@ export default class HomePage extends Component {
     this._postEmailAddress = this._postEmailAddress.bind(this);
   }
 
+  componentDidMount() {
+    document.title = 'PARTSio - Inventory is Better-Together';
+  }
+
   _handleChange(event) {
     this.props.dispatch(hpHandleChange(event));
   }

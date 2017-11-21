@@ -25,6 +25,7 @@ export default class SearchPage extends Component {
 
   componentDidMount() {
     const { location, dispatch } = this.props;
+    document.title = 'Search Parts';
     const { query } = queryString.parse(location.search);
     const event = {
       target: {
