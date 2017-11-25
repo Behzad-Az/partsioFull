@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import Lightbox from 'react-images';
@@ -367,7 +368,9 @@ export default class ItemPage extends Component {
       <div className='item-page'>
         <div className='main-container'>
           <p className='title is-2 has-text-centered'>
-            <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
+            <Link to='/' className='has-text-dark' title='Homepage'>
+              <i className='fa fa-cog has-text-justified' style={{ verticalAlign: 'bottom' }} /> part·si·o
+            </Link>
           </p>
           <hr />
           <p className='title is-6 has-text-centered'>This is a sample item page meant only for demonstration purposes</p>
