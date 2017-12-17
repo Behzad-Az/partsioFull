@@ -1,5 +1,1 @@
-PARTSio is a collaborative tool for industrial inventory management that helps its clients reduce lead times, liquidate excess inventory, and optimize stock levels.
-Our clients benefit greatly by sharing inventory information such as excess levels and procurement needs.
-Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
-
-competitor: www.savonaequipment.com
+PARTSio is a full-stack social networking app that helps post-secondary students achieve their academic and career goals through peer collaboration. Over 50k lines of code using Node.js, PostgreSQL, ElasticSearch, React, Redux, fully-responsive CSS, as well as GoogleMail, GoogleMaps, and Twitter APIs. Deployed on DigitalOcean with SSL certification.
