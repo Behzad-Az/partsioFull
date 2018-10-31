@@ -11,10 +11,10 @@ const path = require('path');
 const connection = require('./db/knexfile.js').production;
 const knex = require('knex')(connection);
 const elasticsearch = require('elasticsearch');
-const esClient = new elasticsearch.Client({
-  host: '127.0.0.1:9200',
-  log: 'error'
-});
+// const esClient = new elasticsearch.Client({
+//   host: '127.0.0.1:9200',
+//   log: 'error'
+// });
 
 // ***************************************************
 // MIDDLEWARE
@@ -42,17 +42,17 @@ const postNewMessage = require('./helpers/POST_Routes/postNewMessage');
 // ***************************************************
 // ROUTES - GET
 // ***************************************************
-app.get('/api/search_results', (req, res) => {
-  getSearchResults(req, res, esClient);
-});
+// app.get('/api/search_results', (req, res) => {
+//   getSearchResults(req, res, esClient);
+// });
 
-app.get('/api/item', (req, res) => {
-  getItemInfo(req, res, esClient);
-});
+// app.get('/api/item', (req, res) => {
+//   getItemInfo(req, res, esClient);
+// });
 
-app.get('/api/docs', (req, res) => {
-  getDocDownload(req, res);
-});
+// app.get('/api/docs', (req, res) => {
+//   getDocDownload(req, res);
+// });
 
 // ***************************************************
 // ROUTES - POST
