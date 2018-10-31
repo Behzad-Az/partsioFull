@@ -74,16 +74,20 @@ export default class HomePage extends Component {
                 <br />Our clients benefit greatly by sharing inventory information such as excess levels and procurement needs.
                 <br />Then our app, through powerful, secure, and confidential data analytics, connects supply and demand for industrial equipment amongst peer corporations, and iteratively develops longer term optimal inventory plans.
               </h2>
+              {
+              /*
               <div className='lchco-ctas'>
                 <Link className='lchco-ctas-button' to='/search?query=36in-150lb-butterfly-valve'>
                   <i className='fa fa-search' /> sample EZ search page
                 </Link>
               </div>
-              <div className='lchco-ctas'>
+              <div className='lchco-ctas'> -->
                 <Link className='lchco-ctas-button' to='item?id=lqNk4vEXeJM'>
                   <i className='fa fa-file-text-o' /> sample equipment page
                 </Link>
               </div>
+              */
+              }
               <div className='lchco-ctas'>
                 <input
                   className='lchco-ctas-input'
@@ -215,7 +219,7 @@ export default class HomePage extends Component {
               <br />
               <div>
                 <span>
-                  © 2017 PARTSio.com
+                  © 2018 PARTSio.com
                 </span>
               </div>
             </div>
