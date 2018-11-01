@@ -32,18 +32,19 @@ export default class HomePage extends Component {
 
   _postEmailAddress() {
     const { dispatch, email } = this.props;
-    fetch('/api/email_entries', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email })
-    })
-    .then(response => response.json())
-    .then(resJSON => dispatch(hpSetEmailStatus(resJSON.emailStatus)))
-    .catch(console.error);
+    console.log("I'm here here email: ", email);
+    // fetch('/api/email_entries', {
+    //   method: 'POST',
+    //   credentials: 'same-origin',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ email })
+    // })
+    // .then(response => response.json())
+    // .then(resJSON => dispatch(hpSetEmailStatus(resJSON.emailStatus)))
+    // .catch(console.error);
   }
 
   render() {
