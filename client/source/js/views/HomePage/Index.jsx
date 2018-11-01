@@ -186,6 +186,8 @@ export default class HomePage extends Component {
               <h5 className='lchco-heading'>
                 A Better-Together Approach to Inventory Management
               </h5>
+              {
+              /*
               <div className='lchco-ctas'>
                 <Link className='lchco-ctas-button' to='/search?query=36in-150lb-butterfly-valve'>
                   <i className='fa fa-search' /> sample EZ search page
@@ -196,6 +198,8 @@ export default class HomePage extends Component {
                   <i className='fa fa-file-text-o' /> sample equipment page
                 </Link>
               </div>
+              */
+              }
               <div className='lchco-ctas'>
                 <input
                   className='lchco-ctas-input'
