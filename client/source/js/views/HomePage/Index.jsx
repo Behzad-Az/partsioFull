@@ -32,7 +32,8 @@ export default class HomePage extends Component {
 
   _postEmailAddress() {
     const { dispatch, email } = this.props;
-    console.log("I'm here here email: ", email);
+    // console.log("I'm here here email: ", email);
+    alert(email);
     // fetch('/api/email_entries', {
     //   method: 'POST',
     //   credentials: 'same-origin',
